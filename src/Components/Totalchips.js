@@ -14,7 +14,7 @@ const Totalchips = () => {
     const getchips = () => {
         Axios.get('https://ludo-project-backend.herokuapp.com/api/buyChips/totalchips', config).then(res => 
             // console.log('res: ', res);
-            setdata(res.data)
+            setdata(...data)
         ).catch(error => {
             console.log('Error: ', error);
         });
