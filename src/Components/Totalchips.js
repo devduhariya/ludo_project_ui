@@ -8,11 +8,11 @@ const Totalchips = () => {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
 
-    const [data, setdata] = useState({});
+    const [data, setdata] = useState([]);
 
-
+z
     const getchips = () => {
-        Axios.get('https://ludo-project-backend.herokuapp.com/api/buyChips/totalchips', config).then(res => {
+        Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
             console.log('res: ', res);
             setdata(res.data)
             // console.log("data before useEffect",setdata)
@@ -30,12 +30,11 @@ const Totalchips = () => {
     }, [])
 
     return (
-        data.length>0?
-        <li style={{ paddingTop: '0.8%' }} className="nav-item">
-            Chips:{data}
-        </li>:null
-
-
+       <li style={{paddingTop:'0.8%'}} className="nav-item">
+           Chips:{data}
+       </li>
+            
+        
 
     )
 }
