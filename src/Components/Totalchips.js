@@ -32,13 +32,12 @@ const Totalchips = () => {
     }, [])
 
     return (
-        data?
+      
        <li style={{paddingTop:'0.8%'}} className="nav-item">
-           Chips:{data}
+           Chips:{data.data}
        </li>
-       :<li style={{paddingTop:'0.8%'}} className="nav-item">
-       Chips:0
-   </li>
+       
+   
             
         
 
