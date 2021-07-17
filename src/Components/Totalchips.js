@@ -31,12 +31,12 @@ const Totalchips = () => {
     }, [])
 
     return (
-       
+        <ul>
             <li style={{ paddingTop: '0.8%' }} className="nav-item">
                 Chips:{data}
             </li>
 
-      
+        </ul>
 
 
 

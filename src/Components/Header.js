@@ -8,13 +8,14 @@ import Totalchips from './Totalchips';
 // const config = {
 //   headers: { 'Authorization': `Bearer ${token.token}` }
 // };
-const Header = () => {
+const Header = ({data}) => {
   const history = useHistory();
   // const message="logged out successfully";
   const role = JSON.parse(localStorage.getItem('login'));
   //  if (role) {
   //   window.location.reload();
   //  }
+  
 
   // const totalChips = () => {
   //   Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
@@ -91,7 +92,7 @@ const Header = () => {
                   {/* <li className="nav-item">
                     <a className="nav-link" href="/Admin">Admin</a>
                   </li> */}
-                  <Totalchips />
+                  <Totalchips data={data}/>
                 </>
                 :
                 <li className="nav-item">
