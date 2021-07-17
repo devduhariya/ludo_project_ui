@@ -8,7 +8,7 @@ const Totalchips = () => {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
 
-    const [data, setdata] = useState([]);
+    const [data, setdata] = useState(0);
 
 
     const getchips = () => {
