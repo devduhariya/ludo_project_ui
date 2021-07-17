@@ -67,7 +67,7 @@ const Play = (props) => {
         })
         // const id  = state.id
         console.log("idd", id);
-        Axios.post(`http://localhost:9000/api/setChallenge/` + id, state,
+        Axios.put(`http://localhost:9000/api/setChallenge/` + id, state,
             config
         ).then(res => {
             setData(res.data);
