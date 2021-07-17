@@ -12,7 +12,7 @@ const Totalchips = () => {
 
 
     const getchips = () => {
-        Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
+        Axios.get('https://ludo-project-backend.herokuapp.com/api/buyChips/totalchips', config).then(res => {
             console.log('res: ', res);
             setdata(res.data)
             // console.log("data before useEffect",setdata)
@@ -30,11 +30,11 @@ const Totalchips = () => {
     }, [])
 
     return (
-       <li style={{paddingTop:'0.8%'}} className="nav-item">
-           Chips:{data}
-       </li>
-            
-        
+        <li style={{ paddingTop: '0.8%' }} className="nav-item">
+            Chips:{data}
+        </li>
+
+
 
     )
 }

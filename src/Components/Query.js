@@ -36,7 +36,7 @@ const Query = () => {
     const handleSubmitbutton = async(e) =>{
         e.preventDefault();
         console.log(state);
-        await fetch("http://localhost:9000/api/query", 
+        await fetch("https://ludo-project-backend.herokuapp.com/api/query", 
         {                   
             method:"POST",
                 headers:{
@@ -65,7 +65,7 @@ const Query = () => {
 
         
         Axios.post( 
-            'http://localhost:9000/api/query',
+            'https://ludo-project-backend.herokuapp.com/api/query',
             state,
             config
           ).then(window.alert("Query saved successfully")).catch(console.log);

@@ -25,7 +25,7 @@ const BuyChips = () => {
         window.location.reload();
         e.preventDefault();
         console.log(state);
-        await fetch("http://localhost:9000/api/buyChips",
+        await fetch("https://ludo-project-backend.herokuapp.com/api/buyChips",
             {
                 method: "POST",
                 headers: {
@@ -50,7 +50,7 @@ const BuyChips = () => {
 
     const handleSubmit = (e) => {
         Axios.post(
-            'http://localhost:9000/api/buyChips',
+            'https://ludo-project-backend.herokuapp.com/api/buyChips',
             state,
             config
         ).then(console.log).catch(console.log);

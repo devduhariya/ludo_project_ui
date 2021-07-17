@@ -40,7 +40,7 @@ const Admin = () => {
 
     // const id  = state.id
     console.log("idd", id);
-    Axios.put(`http://localhost:9000/api/buyChips/` + id, state,
+    Axios.put(`https://ludo-project-backend.herokuapp.com/api/buyChips/` + id, state,
       config
     ).then(res => {
       setState(res.data);
@@ -62,7 +62,7 @@ const Admin = () => {
 
     // const id  = state.id
     console.log("idd", id);
-    Axios.delete(`http://localhost:9000/api/buyChips/` + id, state,
+    Axios.delete(`https://ludo-project-backend.herokuapp.com/api/buyChips/` + id, state,
       config
     ).then(res => {
       setState(res.data);

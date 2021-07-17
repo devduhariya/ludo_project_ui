@@ -50,7 +50,7 @@ const Play = (props) => {
 
     const handleSubmit = (e) => {
         Axios.post(
-            'http://localhost:9000/api/setChallenge',
+            'https://ludo-project-backend.herokuapp.com/api/setChallenge',
             state,
             config
         ).then(console.log).catch(console.log);
@@ -67,7 +67,7 @@ const Play = (props) => {
         })
         // const id  = state.id
         console.log("idd", id);
-        Axios.put(`http://localhost:9000/api/setChallenge/` + id, state,
+        Axios.put(`https://ludo-project-backend.herokuapp.com/api/setChallenge/` + id, state,
             config
         ).then(res => {
             setData(res.data);

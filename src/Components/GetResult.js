@@ -13,7 +13,7 @@ const GetResult = () => {
 
     })
     const getResult = () => {
-        Axios.get('http://localhost:9000/api/setChallenge/result', config).then(res => {
+        Axios.get('https://ludo-project-backend.herokuapp.com/api/setChallenge/result', config).then(res => {
           console.log('res: ', res);
           setdata(res.data)
           // console.log("data before useEffect",setdata)

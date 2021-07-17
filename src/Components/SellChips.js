@@ -20,7 +20,7 @@ const SellChips = () => {
     const handleSubmitbutton = async (e) => {
         e.preventDefault();
         console.log(state);
-        await fetch("http://localhost:9000/api/sellchips",
+        await fetch("https://ludo-project-backend.herokuapp.com/api/sellchips",
             {
                 method: "POST",
                 headers: {
@@ -46,7 +46,7 @@ const SellChips = () => {
     const handleSubmit = (e) => {
 
         Axios.post(
-            'http://localhost:9000/api/sellchips',
+            'https://ludo-project-backend.herokuapp.com/api/sellchips',
             state,
             config
         ).then(console.log).catch(console.log);

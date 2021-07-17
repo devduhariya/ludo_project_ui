@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:9000/api/";
+const API_URL = "https://ludo-project-backend.herokuapp.com/api/";
 
 const register = (name, ph, email, password) => {
   return axios.post(API_URL + "auth/register", {
