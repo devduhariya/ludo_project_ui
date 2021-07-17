@@ -53,6 +53,30 @@ const Admin = () => {
     })
   }
   
+  const rejectRequest = (id) => {
+    setState({
+      id: id
+    })
+
+   
+
+    // const id  = state.id
+    console.log("idd", id);
+    Axios.delete(`http://localhost:9000/api/buyChips/` + id, state,
+      config
+    ).then(res => {
+      setState(res.data);
+      // state,
+      window.location.reload()
+      console.log("res.data", res.data);
+      // console.log("res.data",res.data._id);
+
+
+    })
+  }
+
+
+
   // console.log("data after useEffect", data)
 
   return (
@@ -62,6 +86,7 @@ const Admin = () => {
       <AdminTable data={data}
         // editTableRecord={editTableRecordHandler}
         updateChallengeAmount={updateChallengeAmount}
+        rejectRequest={rejectRequest}
       />
 
     

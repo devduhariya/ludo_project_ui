@@ -33,7 +33,7 @@ const Admintable = (props) => {
                                     <td>{result.status}</td>
                                     <td>{result.txn_ID}</td>
                                     <td><button type="button" onClick={() => props.updateChallengeAmount(result._id)} className="btn btn-primary btn-sm">Verify</button></td>
-                                    <td><button className="btn btn-sm btn-danger" onClick={() => props.updateState(result._id)}>Reject </button></td>
+                                    <td><button className="btn btn-sm btn-danger" onClick={() => props.rejectRequest(result._id)}>Reject </button></td>
                                 </tr>
                             )
                         }) : <div>fetching Data</div>
