@@ -10,7 +10,7 @@ const Totalchips = () => {
 
     const [data, setdata] = useState([]);
 
-z
+
     const getchips = () => {
         Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
             console.log('res: ', res);
@@ -30,9 +30,13 @@ z
     }, [])
 
     return (
+        data?
        <li style={{paddingTop:'0.8%'}} className="nav-item">
            Chips:{data}
        </li>
+       :<li style={{paddingTop:'0.8%'}} className="nav-item">
+       Chips:0
+   </li>
             
         
 
