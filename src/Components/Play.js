@@ -18,7 +18,7 @@ const Play = (props) => {
     const handleSubmitbutton = async (e) => {
         e.preventDefault();
         console.log(state);
-        await fetch("http://localhost:9000/api/setChallenge",
+        await fetch("https://ludo-project-backend.herokuapp.com/api/setChallenge",
             {
                 method: "POST",
                 headers: {
@@ -38,7 +38,7 @@ const Play = (props) => {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
     const getChallenge = () => {
-        Axios.get('http://localhost:9000/api/setChallenge/all', config).then(res => {
+        Axios.get('https://ludo-project-backend.herokuapp.com/api/setChallenge/all', config).then(res => {
             console.log('res: ', res);
             setData(res.data)
             // console.log("data before useEffect",res.data[0]._id)
