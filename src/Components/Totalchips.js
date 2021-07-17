@@ -8,7 +8,7 @@ const Totalchips = () => {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
 
-    const [data, setdata] = useState([]);
+    const [data, setdata] = useState({});
 
 
     const getchips = () => {
@@ -30,9 +30,10 @@ const Totalchips = () => {
     }, [])
 
     return (
+        data.length>0?
         <li style={{ paddingTop: '0.8%' }} className="nav-item">
             Chips:{data}
-        </li>
+        </li>:null
 
 
 
