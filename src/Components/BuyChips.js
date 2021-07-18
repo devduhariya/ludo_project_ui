@@ -65,7 +65,7 @@ const BuyChips = () => {
                         <p className="custom-title">Buy Chips<br /><span className="text-info">(1Rupee = 1Chip)</span></p>
                         <p>Pay via Paytm Wallet Only</p>
                         <p className="text-danger">Don't pay through Bank (You will lose your money).</p>
-                        <p>Please pay at this number only <span><b>7571896225</b></span>, and enter wallet Transcation Id.<br />
+                        <p>Please pay at this number only <span><b>7357525272</b></span>, and enter wallet Transcation Id.<br />
                             <a href="/help/loadbalance">Help</a></p>
                     </div>
 
@@ -73,7 +73,7 @@ const BuyChips = () => {
 
                         <form id="loadBalance" onSubmit={handleSubmitbutton} method="post">
                             <div className="input-group mb-3">
-                                <input id="paymentNumber" type="number" className="form-control" name="paytm_no" placeholder="Enter Receiver Paytm Number..." readonly="" value="7571896225" />
+                                <input id="paymentNumber" type="number" className="form-control" name="paytm_no" placeholder="Enter Receiver Paytm Number..." readonly="" value="7357525272" />
                                 <div className="input-group-append">
                                     <button id="copyButton" className="btn btn-outline-secondary waves-effect waves-light" type="button">Copy</button>
                                 </div>
@@ -95,7 +95,7 @@ const BuyChips = () => {
                         </div>
                         Paid at another number? Don't worry just <a href="javascript:$('#paymentNumber').attr('readonly', false).val('');$('#copyButton').fadeOut();$('#yourPaytmNumber').fadeIn();playAudio('manualLoad');">click here.</a>
                         <br /><br />
-                        If your <u>Transaction Id</u> is not matching. Don't worry, please <a href="https://wa.me/919424627532?text=My+Transaction+Id+is+not+matching.+My+account+number+is+7357525272" onclick="playAudio('supportAudio');" target="_blank">click here</a> to contact admin or whatsapp your complaint at (+919424627532). Your query will be solved in within 12 hours.
+                        If your <u>Transaction Id</u> is not matching. Don't worry, please <a href="https://wa.me/917357525272?text=My+Transaction+Id+is+not+matching.+My+account+number+is+7357525272" onclick="playAudio('supportAudio');" target="_blank">click here</a> to contact admin or whatsapp your complaint at (+919424627532). Your query will be solved in within 12 hours.
                     </div>
 
                     <br />
