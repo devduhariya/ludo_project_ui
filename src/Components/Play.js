@@ -37,10 +37,13 @@ const Play = (props) => {
                 },
                 body: JSON.stringify(state)
             }).then(response => {
+                
                 console.log(response)
+                state.amount <= 50 && state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>
                 // stateById.push(response)
                 //console.log("response", response);
             }, setState({ ...state, chipsSaved: true }))
+            
             .catch(error => {
                 console.log(error)
             })

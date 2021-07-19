@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './Style.css';
-//import Axios from 'axios';
 import AuthService from "../services/auth.service";
 import { useHistory } from "react-router-dom";
 import Totalchips from './Totalchips';
-// var token = JSON.parse(localStorage.getItem('login'));
-// const config = {
-//   headers: { 'Authorization': `Bearer ${token.token}` }
-// };
+
 const Header = ({data}) => {
   const history = useHistory();
-  // const message="logged out successfully";
+  
   const role = JSON.parse(localStorage.getItem('login'));
-  //  if (role) {
-  //   window.location.reload();
-  //  }
+  
   
 
   // const totalChips = () => {
