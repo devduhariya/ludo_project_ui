@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './Style.css';
-//import Axios from 'axios';
 import AuthService from "../services/auth.service";
 import { useHistory } from "react-router-dom";
 import Totalchips from './Totalchips';
-// var token = JSON.parse(localStorage.getItem('login'));
-// const config = {
-//   headers: { 'Authorization': `Bearer ${token.token}` }
-// };
+
 const Header = ({data}) => {
   const history = useHistory();
-  // const message="logged out successfully";
+  
   const role = JSON.parse(localStorage.getItem('login'));
-  //  if (role) {
-  //   window.location.reload();
-  //  }
+  
   
 
   // const totalChips = () => {
@@ -68,9 +62,9 @@ const Header = ({data}) => {
                   <li className="nav-item">
                     <a className="nav-link" href="/buyChips">Buy Chips</a>
                   </li>
-                  {/* <li className="nav-item">
+                  <li className="nav-item">
                     <a className="nav-link" href="/sellChips">Sell Chips</a>
-                  </li> */}
+                  </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/refer">Refer &amp; Earn</a>
                   </li>
