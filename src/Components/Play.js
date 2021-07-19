@@ -14,6 +14,17 @@ const Play = (props) => {
             [e.target.id]: e.target.value
         }));
     }
+
+    const required = (value) => {
+        if (!value) {
+          return (
+            <div className="alert alert-danger" role="alert">
+              This field is required!
+            </div>
+          );
+        }
+      };
+
     var token = JSON.parse(localStorage.getItem('login'));
     const handleSubmitbutton = async (e) => {
         e.preventDefault();
@@ -113,8 +124,8 @@ const Play = (props) => {
             <form id="set-challenge-form" className="form-inline" onSubmit={handleSubmitbutton}>
                 <div className="form-group set-challenge-block">
                     {/* <label for="inputSetChallenge" class="sr-only active">Set Challenge</label> */}
-                    <input style={{ float: 'left', marginRight: '1%' }} onChange={handleChange} name="amount" value={state.amount} type="text" className="form-control input-box" id="amount" placeholder="Amount" />
-                    <input onChange={handleChange} name="roomCode" value={state.roomCode} type="text" className="form-control input-box" id="roomCode" placeholder="Room Code" />
+                    <input style={{ float: 'left', marginRight: '1%' }} onChange={handleChange} name="amount" value={state.amount} type="text" className="form-control input-box" id="amount" placeholder="Amount" validations={[required]} />
+                    <input onChange={handleChange} name="roomCode" value={state.roomCode} type="text" className="form-control input-box" id="roomCode" placeholder="Room Code" validations={[required]}/>
                     <button style={{ marginLeft: '1%', marginTop: '0.5%' }} onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Set</button>
                 </div>
 

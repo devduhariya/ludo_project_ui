@@ -68,9 +68,9 @@ const Header = ({data}) => {
                   <li className="nav-item">
                     <a className="nav-link" href="/buyChips">Buy Chips</a>
                   </li>
-                  {/* <li className="nav-item">
+                  <li className="nav-item">
                     <a className="nav-link" href="/sellChips">Sell Chips</a>
-                  </li> */}
+                  </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/refer">Refer &amp; Earn</a>
                   </li>
