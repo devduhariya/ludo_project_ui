@@ -26,13 +26,9 @@ const Play = (props) => {
                 },
                 body: JSON.stringify(state)
             }).then(response => {
-                
                 console.log(response)
-                state.amount <= 50 && state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>
-                // stateById.push(response)
-                //console.log("response", response);
             }, setState({ ...state, chipsSaved: true }))
-            
+
             .catch(error => {
                 console.log(error)
             })
@@ -44,7 +40,6 @@ const Play = (props) => {
         Axios.get('https://ludo-project-backend.herokuapp.com/api/setChallenge/all', config).then(res => {
             console.log('res: ', res);
             setData(res.data)
-            // console.log("data before useEffect",res.data[0]._id)
         }).catch(error => {
             console.log('Error: ', error);
         });
@@ -52,14 +47,13 @@ const Play = (props) => {
 
 
     const handleSubmit = (e) => {
+       if (state.amount <= 50 || state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>)
         Axios.post(
             'https://ludo-project-backend.herokuapp.com/api/setChallenge',
             state,
             config
         ).then(console.log).catch(console.log);
         window.location.reload();
-        state.amount <= 50 && state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>
-
     }
     useEffect(() => {
         getChallenge()
@@ -83,15 +77,6 @@ const Play = (props) => {
         })
     }
 
-    // const findChallenge = () => {
-    //     Axios.get('http://localhost:9000/api/setChallenge/result', config).then(res => {
-    //         console.log('res: ', res);
-    //         setData(res.data)
-    //         // console.log("data before useEffect",res.data[0]._id)
-    //     }).catch(error => {
-    //         console.log('Error: ', error);
-    //     });
-    // }
 
     console.log("data after useEffect", data)
 

@@ -11,19 +11,6 @@ const Header = ({data}) => {
   
   
 
-  // const totalChips = () => {
-  //   Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
-  //     console.log('res: ', res);
-  //     setChips(res.data)
-  //     // console.log("data before useEffect",setdata)
-  //   }).catch(error => {
-  //     console.log('Error: ', error);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //  totalChips()
-  // }, [ ])
 
   const handleLogout = (e) => {
     e.preventDefault();

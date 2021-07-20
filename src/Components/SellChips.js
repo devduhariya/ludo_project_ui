@@ -83,19 +83,8 @@ const SellChips = () => {
                     </div><br />
                     <div className="form-group">
                         <form onSubmit={handleSubmitbutton} method="post">
-                            {/* <select name="paymentMethod" className="form-control" id="paymentMethod"> */}
-                            {/* <option value="Paytm" selected="">Paytm</option>
-                            <!-- <option value="Google Pay">Google Pay(2% Charges)</option>
-                            <option value="PhonePe">PhonePe(2% Charges)</option>
-                            <option value="UPI ID">UPI ID(2% Charges)</option> --> */}
-                            {/* </select><br/> */}
                             <input id="paytm_no" onChange={handleChange} value={state.paytm_no} type="number" name="paymentNumber" placeholder="Paytm Number" required={true} className="form-control" /><br />
                             <input type="number" onChange={handleChange} value={state.amount} id="amount" name="paymentAmount" placeholder="Chips Amount" required={true} className="form-control" /><br />
-                            {/* <div className="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" className="custom-control-input" id="agreeCheckBox" required=""/>
-                            <label className="custom-control-label" for="agreeCheckBox">I Agree that I am 18 years or older and not a resident of Tamil Nadu, Andhra Pradesh, Telangana, Assam, Orissa, Kerala, Sikkim, Nagaland or Gujarat.</label>
-                        </div> */}
-                            {/* <!-- <label className="hidden" id="upiAmount">You will receive: <span className="text-danger"></span></label> --> */}
                             <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" onClick={handleSubmit} value="Sell" className="btn btn-success">Sell</button></span>
                         </form>
                     </div>
@@ -104,9 +93,7 @@ const SellChips = () => {
                     </div>
                     <hr />
                     <ul id="challenge-list" className="list-group">
-
                     </ul>
-                    {/* <!-- <b><i>(If Urgent Withdrawal)</i></b> = <a href="https://wa.me/919407144049?text=I+Have+Set+A+Withdrawal+Request,+Please+Process+it." target="_blank">Click Here.</a> --> */}
                 </div>
             </div>
         </div>
