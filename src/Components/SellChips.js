@@ -65,20 +65,20 @@ const SellChips = () => {
                             <p className="text-info blink" >एक दिन में सिर्फ <span className="text-dark"><b>2 रिकवेस्ट</b></span> ही ली जाएगी |</p>
                         </div><br />
                         {/* <div style="display: flex; justify-content: center;"> */}
-                        <div>
-                            {/* <!-- display: flex;  justify-content: center; align-items: center; --> */}
-                            {/* <div style="padding: 5px 10px; border: 2px dotted; border-radius: 10px; margin-right: 10px;"> */}
+                        {/* <div>
+                            display: flex;  justify-content: center; align-items: center;
+                            <div style="padding: 5px 10px; border: 2px dotted; border-radius: 10px; margin-right: 10px;">
                             <div>
                                 <span className="text-info">Unused Chips:</span><br />
                                 <span className="text-success" >0</span>
                             </div>
-                            {/* <div style="padding: 5px 10px; border: 2px dotted; border-radius: 10px;"> */}
+                            <div style="padding: 5px 10px; border: 2px dotted; border-radius: 10px;">
                             <div>
                                 <span className="text-info" >Winning Chips:</span><br />
                                 <span className="text-success">0.00</span>
                             </div>
                         </div>
-                        <p>Unused Chips cannot be sold, Play and convert to Winning Chips</p>
+                        <p>Unused Chips cannot be sold, Play and convert to Winning Chips</p> */}
                         {/* <!-- <p className="text-danger">(PhonePe / Google Pay / UPI ID) will be removed soon.</p> --> */}
                     </div><br />
                     <div className="form-group">

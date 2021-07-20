@@ -14,6 +14,17 @@ const Play = (props) => {
             [e.target.id]: e.target.value
         }));
     }
+
+    const required = (value) => {
+        if (!value) {
+          return (
+            <div className="alert alert-danger" role="alert">
+              This field is required!
+            </div>
+          );
+        }
+      };
+
     var token = JSON.parse(localStorage.getItem('login'));
     const handleSubmitbutton = async (e) => {
         e.preventDefault();
