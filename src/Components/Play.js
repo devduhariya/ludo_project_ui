@@ -47,12 +47,12 @@ const Play = (props) => {
 
 
     const handleSubmit = (e) => {
-       if (state.amount <= 50 || state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>)
-        Axios.post(
-            'https://ludo-project-backend.herokuapp.com/api/setChallenge',
-            state,
-            config
-        ).then(console.log).catch(console.log);
+        if (state.amount <= 50 || state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>)
+            Axios.post(
+                'https://ludo-project-backend.herokuapp.com/api/setChallenge',
+                state,
+                config
+            ).then(console.log).catch(console.log);
         window.location.reload();
     }
     useEffect(() => {
@@ -109,34 +109,9 @@ const Play = (props) => {
                 <ul id="your-challenge-list" class="list-group">
 
                 </ul>
-
-
                 <ChallengeTable data={data}
                     updateChallengeAmount={updateChallengeAmount}
                 />
-                {/* {data.length > 0 ? data.map((result) => {
-                    return (
-                        
-                        <ul key={result._id} id="challenge-list" className="list-group">
-                            {
-                                result.amount > 49 ?
-                                    <li id="" className="list-group-item" data-position="50">
-
-                                        <div class="msg_cotainer_top">
-                                            <div className="challengeText">
-                                                {result.name} have set a Challenge for <span style={{ "background-color": "antiquewhite", "padding": "2px", "display": "inline-block" }}><b>{result.amount}</b></span>
-                                            </div>
-                                            <div class="challengeButton">
-                                                <button type="button" id ={result._id} onClick={updateChallengeAmount} className="btn btn-primary btn-sm">Play</button>
-                                            </div>
-                                            {/* <li>{result._id}</li> */}
-                {/* </div>
-                                    </li> : null
-                            }
-                        </ul>
-                    )
-                }) : <div>No challenges</div>
-                } */}
             </form>
         </div>
 
