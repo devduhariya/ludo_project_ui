@@ -15,15 +15,15 @@ const Play = (props) => {
         }));
     }
 
-    const required = (value) => {
-        if (!value) {
-          return (
-            <div className="alert alert-danger" role="alert">
-              This field is required!
-            </div>
-          );
-        }
-      };
+    // const required = (value) => {
+    //     if (!value) {
+    //       return (
+    //         <div className="alert alert-danger" role="alert">
+    //           This field is required!
+    //         </div>
+    //       );
+    //     }
+    //   };
 
     var token = JSON.parse(localStorage.getItem('login'));
     const handleSubmitbutton = async (e) => {
@@ -100,9 +100,6 @@ const Play = (props) => {
                         <span aria-hidden="true" className="pr-2">×</span>
                     </button>
                 </div>
-                <div onclick="" className="toast-body bg-primary text-center" id="notification-message">
-                    You got a request on your trade!
-                </div>
             </div>
             <div className="row no-gutters justify-content-center">
                 <div className="col-8 col-md-4">
@@ -116,7 +113,7 @@ const Play = (props) => {
                     <button style={{ marginLeft: '1%', marginTop: '0.5%' }} onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Set</button>
                 </div>
 
-                <ul id="your-challenge-list" class="list-group">
+                <ul id="your-challenge-list" className="list-group">
 
                 </ul>
                 <ChallengeTable data={data}

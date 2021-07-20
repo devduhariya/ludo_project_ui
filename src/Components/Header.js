@@ -35,14 +35,7 @@ const Header = ({data}) => {
 
             {
               localStorage.getItem("login") ?
-                //window.location.reload();
                 <>
-                  {/* <li className="nav-item">
-                    <a className="nav-link" href="/history">History</a>
-                  </li> */}
-                  {/* <li className="nav-item">
-                    <a className="nav-link" href="/settings">Setting</a>
-                  </li> */}
                   <li className="nav-item">
                     <a className="nav-link" href="/Play">Play<span className="sr-only"></span></a>
                   </li>
@@ -56,7 +49,7 @@ const Header = ({data}) => {
                     <a className="nav-link" href="/refer">Refer &amp; Earn</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link waves-effect waves-light" href="/query">Raise Query<span class="card-text blink text-danger new">New</span></a>
+                    <a className="nav-link waves-effect waves-light" href="/query">Raise Query<span className="card-text blink text-danger new">New</span></a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/help">Help</a>
@@ -70,9 +63,6 @@ const Header = ({data}) => {
                         <a className="nav-link" href="/Admin">Admin</a>
                       </li> : null
                   }
-                  {/* <li className="nav-item">
-                    <a className="nav-link" href="/Admin">Admin</a>
-                  </li> */}
                   <Totalchips data={data}/>
                 </>
                 :
@@ -81,9 +71,6 @@ const Header = ({data}) => {
                 </li>
             }
           </ul>
-          {/* <span className="navbar-text">
-          
-          </span> */}
         </div>
       </nav>
       <br />

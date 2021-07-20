@@ -34,14 +34,12 @@ function App() {
         {
           localStorage.getItem("login") ?
             <Switch>
-              {/* <Route exact path='/settings' component={Settings} /> */}
               <Route exact path='/buyChips' component={BuyChips} />
               <Route exact path='/sellChips' component={SellChips} />
               <Route exact path='/refer' component={Refer} />
               <Route exact path='/query' component={Query} />
               <Route exact path='/help' component={Help} />
               <Route exact path='/Play' component={Play} />
-              {/* <Route exact path='/Admin' component={Admin} /> */}
               <Route exact path='/chips' component={Totalchips} />
               <Route exact path='/gameResult' component={GameResult} />
               <Route exact path='/admin/gameResult' component={GetResult} />
