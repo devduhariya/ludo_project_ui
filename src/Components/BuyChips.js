@@ -42,7 +42,7 @@ const BuyChips = () => {
 
     }
 
-    var token = JSON.parse(localStorage.getItem('login'));
+    // var token = JSON.parse(localStorage.getItem('login'));
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };

@@ -4,12 +4,12 @@ import AuthService from "../services/auth.service";
 import { useHistory } from "react-router-dom";
 import Totalchips from './Totalchips';
 
-const Header = ({data}) => {
+const Header = ({ data }) => {
   const history = useHistory();
-  
+
   const role = JSON.parse(localStorage.getItem('login'));
-  
-  
+
+
 
   // const totalChips = () => {
   //   Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
@@ -37,8 +37,8 @@ const Header = ({data}) => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand">Welcome</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
@@ -86,7 +86,7 @@ const Header = ({data}) => {
                   {/* <li className="nav-item">
                     <a className="nav-link" href="/Admin">Admin</a>
                   </li> */}
-                  <Totalchips data={data}/>
+                  <Totalchips data={data} />
                 </>
                 :
                 <li className="nav-item">
