@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import './Style.css';
-//import Admin from './Admin';
+
 
 const BuyChips = () => {
     const [state, setState] = useState({
@@ -9,10 +9,6 @@ const BuyChips = () => {
         txn_ID: '',
         amount: null
     })
-
-    const updateState = () => {
-        setState(null)
-    }
     const handleChange = (e) => {
         setState((prevState) => ({
             ...prevState,
@@ -73,7 +69,7 @@ const BuyChips = () => {
 
                         <form id="loadBalance" onSubmit={handleSubmitbutton} method="post">
                             <div className="input-group mb-3">
-                                <input id="paymentNumber" type="number" className="form-control" name="paytm_no" placeholder="Enter Receiver Paytm Number..." readonly="" value="7357525272" />
+                                <input id="paymentNumber" type="number" className="form-control" name="paytm_no" placeholder="Enter Receiver Paytm Number..." readOnly={true} value="7357525272" />
                                 <div className="input-group-append">
                                     <button id="copyButton" className="btn btn-outline-secondary waves-effect waves-light" type="button">Copy</button>
                                 </div>

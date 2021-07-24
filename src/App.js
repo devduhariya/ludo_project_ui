@@ -17,6 +17,7 @@ import Play from './Components/Play';
 import Totalchips from './Components/Totalchips';
 import GameResult from './Components/GameResult';
 import GetResult from './Components/GetResult';
+//import AdminSellChips from './Components/AdminSellChips';
 
 function App() {
   const role = JSON.parse(localStorage.getItem('login'));
@@ -34,14 +35,12 @@ function App() {
         {
           localStorage.getItem("login") ?
             <Switch>
-              {/* <Route exact path='/settings' component={Settings} /> */}
               <Route exact path='/buyChips' component={BuyChips} />
               <Route exact path='/sellChips' component={SellChips} />
               <Route exact path='/refer' component={Refer} />
               <Route exact path='/query' component={Query} />
               <Route exact path='/help' component={Help} />
               <Route exact path='/Play' component={Play} />
-              {/* <Route exact path='/Admin' component={Admin} /> */}
               <Route exact path='/chips' component={Totalchips} />
               <Route exact path='/gameResult' component={GameResult} />
               <Route exact path='/admin/gameResult' component={GetResult} />
@@ -49,6 +48,10 @@ function App() {
                 role.token && role.role == "admin" ?
                   <Route exact path='/Admin' component={Admin} /> : null
               }
+              {/* {
+                role.token && role.role == "admin" ?
+                  <Route exact path='/AdminSellChips' component={AdminSellChips} /> : null
+              } */}
 
 
             </Switch>

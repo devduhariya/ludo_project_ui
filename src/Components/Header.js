@@ -11,19 +11,6 @@ const Header = ({ data }) => {
 
 
 
-  // const totalChips = () => {
-  //   Axios.get('http://localhost:9000/api/buyChips/totalchips', config).then(res => {
-  //     console.log('res: ', res);
-  //     setChips(res.data)
-  //     // console.log("data before useEffect",setdata)
-  //   }).catch(error => {
-  //     console.log('Error: ', error);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //  totalChips()
-  // }, [ ])
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -48,14 +35,7 @@ const Header = ({ data }) => {
 
             {
               localStorage.getItem("login") ?
-                //window.location.reload();
                 <>
-                  {/* <li className="nav-item">
-                    <a className="nav-link" href="/history">History</a>
-                  </li> */}
-                  {/* <li className="nav-item">
-                    <a className="nav-link" href="/settings">Setting</a>
-                  </li> */}
                   <li className="nav-item">
                     <a className="nav-link" href="/Play">Play<span className="sr-only"></span></a>
                   </li>
@@ -69,7 +49,7 @@ const Header = ({ data }) => {
                     <a className="nav-link" href="/refer">Refer &amp; Earn</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link waves-effect waves-light" href="/query">Raise Query<span class="card-text blink text-danger new">New</span></a>
+                    <a className="nav-link waves-effect waves-light" href="/query">Raise Query<span className="card-text blink text-danger new">New</span></a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/help">Help</a>
@@ -83,10 +63,13 @@ const Header = ({ data }) => {
                         <a className="nav-link" href="/Admin">Admin</a>
                       </li> : null
                   }
-                  {/* <li className="nav-item">
-                    <a className="nav-link" href="/Admin">Admin</a>
-                  </li> */}
-                  <Totalchips data={data} />
+                  {/* {
+                    role.token && role.role == "admin" ?
+                      <li className="nav-item">
+                        <a className="nav-link" href="/AdminSellChips">Admin Sell Chips</a>
+                      </li> : null
+                  } */}
+                  <Totalchips data={data}/>
                 </>
                 :
                 <li className="nav-item">
@@ -94,9 +77,6 @@ const Header = ({ data }) => {
                 </li>
             }
           </ul>
-          {/* <span className="navbar-text">
-          
-          </span> */}
         </div>
       </nav>
       <br />
