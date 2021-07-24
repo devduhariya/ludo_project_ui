@@ -15,14 +15,7 @@ const Play = (props) => {
         }));
     }
 
-    // const required = (value) => {
-    //     if (!value) {
-    //       return (
-    //         <div className="alert alert-danger" role="alert">
-    //           This field is required!
-    //         </div>
-    //       );
-    //     }
+    
     //   };
 
     var token = JSON.parse(localStorage.getItem('login'));
@@ -79,7 +72,10 @@ const Play = (props) => {
             config
         ).then(res => {
             setData(res.data);
-            props.history.push('/gameResult');
+            props.history.push({
+                pathname:'/gameResult',
+                state: { data: id }
+        });
             window.location.reload()
             console.log("res.data", res.data);
             // console.log("res.data",res.data._id);
