@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Style.css';
 import AuthService from "../services/auth.service";
 import { useHistory } from "react-router-dom";
 import Totalchips from './Totalchips';
 
 const Header = ({ data }) => {
+  const [show,setShow]= useState(false);
   const history = useHistory();
 
   const role = JSON.parse(localStorage.getItem('login'));
 
 
-
+  const handleCollapse = ()=>{
+    setShow(true);
+  }
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -22,12 +25,12 @@ const Header = ({ data }) => {
   };
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className={show == true ? "navbar navbar-expand-lg navbar-light bg-light":"navbar navbar-collapse-lg navbar-light bg-light"}>
         <a className="navbar-brand">Welcome</a>
-        <button className="navbar-toggler" type="button" data-toggle="expand" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-toggle={show == false ? "collapse" : "expand"} onClick={handleCollapse}  data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="expand navbar-expand" id="navbarText">
+        <div className={show == true ?"expand navbar-expand":"collapse navbar-collapse"} id="navbarText">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <a className="nav-link" href="/termsAndConditions">Term &amp; Condition</a>
