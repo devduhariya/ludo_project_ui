@@ -20,7 +20,7 @@ const ChallengeTable = (props) => {
                                                 <button type="button" onClick={() => props.updateChallengeAmount(result._id)} className="btn btn-primary btn-sm">Play</button>
                                             </div>
                                         </div>
-                                    </li> : null
+                                 </li> : null
                             }
                         </ul>
                     </form>

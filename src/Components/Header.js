@@ -4,12 +4,12 @@ import AuthService from "../services/auth.service";
 import { useHistory } from "react-router-dom";
 import Totalchips from './Totalchips';
 
-const Header = ({data}) => {
+const Header = ({ data }) => {
   const history = useHistory();
-  
+
   const role = JSON.parse(localStorage.getItem('login'));
-  
-  
+
+
 
 
   const handleLogout = (e) => {

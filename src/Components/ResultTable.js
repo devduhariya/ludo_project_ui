@@ -1,11 +1,11 @@
 import React from 'react'
 
 const ResultTable = (props) => {
-    // console.log('pros', props.data);
+    console.log('pros', props);
     const { data } = props;
     return (
         <div>
-            <table className="table table-striped table-bordered">
+            {/* <table className="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>Amount</th>
@@ -53,15 +53,17 @@ const ResultTable = (props) => {
                                         )
                                     })}
 
-                                    <td><button type="button" onClick={() => props.updateChallengeAmount(result._id)} className="btn btn-primary btn-sm">Verify</button></td>
-                                    <td><button className="btn btn-sm btn-danger" onClick={() => props.updateState(result._id)}>Reject </button></td>
-                                </tr>
+                                    {/* <td><button type="button" onClick={() => props.updateChallengeAmount(result._id)} className="btn btn-primary btn-sm">Verify</button></td>
+                                    <td><button className="btn btn-sm btn-danger" onClick={() => props.updateState(result._id)}>Reject </button></td> */}
+                                        
+
+                                {/* </tr>
                             )
                         }) : <div>fetching Data</div>
 
                     }
                 </tbody>
-            </table>
+            </table> */}
         </div>
     )
 }
