@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 
 
@@ -6,7 +6,7 @@ import Axios from 'axios';
 const GameResult = (props) => {
     const [result, setResult] = useState({
         result: '',
-        screenshots:''
+        screenshots: ''
     })
 
     const handleChange = (e) => {
@@ -19,7 +19,7 @@ const GameResult = (props) => {
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
-    
+
     // const handleSubmitbutton = async (e) => {
     //     e.preventDefault();
     //     console.log(result);
@@ -37,9 +37,9 @@ const GameResult = (props) => {
     //         })
     // }
 
-   
-    const handleSubmit = async(e) => {
-         e.preventDefault();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         //     Axios.post(
         //         `https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.data,
         //         config,
@@ -51,20 +51,20 @@ const GameResult = (props) => {
             config
         ).then(res => {
             setResult(res.data);
-        
+
             //window.location.reload()
             console.log("res.data", res.data);
             // console.log("res.data",res.data._id);
 
         });
     }
-    
+
     return (
         <div>
            <form onSubmit={handleSubmit} id="set-challenge-form" className="form-inline" >
                 <div className="form-group set-challenge-block">
                     <input style={{ float: 'left', marginRight: '1%' }} onChange={handleChange}  name="Result" value={result.result} type="text" className="form-control input-box" id="result" placeholder="Result" />
-                    <input  name="Screenshot" value={result.screenshots} onChange={handleChange} type="text" className="form-control input-box" id="screenshots" placeholder="Screenshot" />
+                    <input  name="Screenshot" value={result.screenshots} onChange={handleChange} type="file" className="form-control input-box" id="screenshots" placeholder="Screenshot" />
                     <button onClick={handleSubmit} style={{ marginLeft: '1%', marginTop: '0.5%' }}  type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
                 </div>
 
@@ -76,6 +76,23 @@ const GameResult = (props) => {
                 /> */}
             </form>
         </div>
+
+        // <div>
+        //     {/* <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank">Click here to post Your Result</a> */}
+        //     <select name="resultBox"
+        //         className="form-control"
+        //     >
+        //         <option value="none" selected={true} hidden={true}>Result</option>
+        //         <option value="hide" onChange={handleChange} >won</option>
+        //         <option value="show" onChange={handleChange} >lost</option>
+        //     </select><br />
+        //     <div className="file-upload text-gray-500">
+        //         <label for="file_upload ">ScreenShots: <span className="hightlight-color"></span></label>
+        //         <input type="file" className="file-input" id="file_upload" />
+        //     </div>
+        //     <span className="waves-input-wrapper waves-effect waves-light"><input onClick={handleSubmit} type="submit" value="Submit" className="btn btn-success" /></span>
+
+        // </div>
     )
 }
 
