@@ -15,27 +15,27 @@ const SellChips = () => {
         }));
     }
 
-    var token = JSON.parse(localStorage.getItem('login'));
-    const handleSubmitbutton = async (e) => {
-        window.location.reload();
-        e.preventDefault();
-        console.log(state);
-        await fetch("https://ludo-project-backend.herokuapp.com/api/sellChips",
-            {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ` + token.token
-                },
+    // var token = JSON.parse(localStorage.getItem('login'));
+    // const handleSubmitbutton = async (e) => {
+    //     window.location.reload();
+    //     e.preventDefault();
+    //     console.log(state);
+    //     await fetch("https://ludo-project-backend.herokuapp.com/api/sellChips",
+    //         {
+    //             method: "POST",
+    //             headers: {
+    //                 "Authorization": `Bearer ` + token.token
+    //             },
 
-                body: JSON.stringify(state)
-            }).then(response => {
-                console.log(response)
-            }, setState({ ...state }))
-            .catch(error => {
-                console.log(error)
-            })
+    //             body: JSON.stringify(state)
+    //         }).then(response => {
+    //             console.log(response)
+    //         }, setState({ ...state }))
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
 
-    }
+    // }
 
     var token = JSON.parse(localStorage.getItem('login'));
     const config = {
