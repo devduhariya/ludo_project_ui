@@ -19,7 +19,6 @@ const Admin = () => {
     Axios.get('https://ludo-project-backend.herokuapp.com/api/buyChips', config).then(res => {
       console.log('res: ', res);
       setdata(res.data)
-      // console.log("data before useEffect",setdata)
     }).catch(error => {
       console.log('Error: ', error);
     });
@@ -37,8 +36,6 @@ const Admin = () => {
     })
 
    
-
-    // const id  = state.id
     console.log("idd", id);
     Axios.put(`https://ludo-project-backend.herokuapp.com/api/buyChips/` + id, state,
       config
@@ -47,8 +44,7 @@ const Admin = () => {
       // state,
       window.location.reload()
       console.log("res.data", res.data);
-      // console.log("res.data",res.data._id);
-
+      
 
     })
   }
@@ -58,38 +54,31 @@ const Admin = () => {
       id: id
     })
 
-   
-
-    // const id  = state.id
     console.log("idd", id);
     Axios.delete(`https://ludo-project-backend.herokuapp.com/api/buyChips/` + id, state,
       config
     ).then(res => {
       setState(res.data);
-      // state,
       window.location.reload()
       console.log("res.data", res.data);
-      // console.log("res.data",res.data._id);
-
 
     })
   }
 
-
-
-  // console.log("data after useEffect", data)
-
   return (
     <div>
-
+       <div>
+        <a href='/Admin/EditPlayerAmount'>Add Chips from Player's Account</a>
+      </div>
+      <br/>
    
       <AdminTable data={data}
-        // editTableRecord={editTableRecordHandler}
         updateChallengeAmount={updateChallengeAmount}
         rejectRequest={rejectRequest}
       />
 
-    
+     
+
     </div>
 
   )

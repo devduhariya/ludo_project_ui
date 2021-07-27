@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './Style.css';
 import AuthService from "../services/auth.service";
 import { useHistory } from "react-router-dom";
@@ -24,10 +24,10 @@ const Header = ({ data }) => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand">Welcome</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-toggle="expand" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarText">
+        <div className="expand navbar-expand" id="navbarText">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <a className="nav-link" href="/termsAndConditions">Term &amp; Condition</a>

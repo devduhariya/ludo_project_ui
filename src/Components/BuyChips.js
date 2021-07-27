@@ -38,18 +38,22 @@ const BuyChips = () => {
 
     }
 
-    // var token = JSON.parse(localStorage.getItem('login'));
+    
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
+        e.preventDefault();
         Axios.post(
             'https://ludo-project-backend.herokuapp.com/api/buyChips',
             state,
             config
-        ).then(console.log).catch(console.log);
+        ).then(res=>{
+            setState(res.data);
+            console.log("res.data", res.data);
+        });
 
     }
 
@@ -67,7 +71,7 @@ const BuyChips = () => {
 
                     <div className="form-group">
 
-                        <form id="loadBalance" onSubmit={handleSubmitbutton} method="post">
+                        <form id="loadBalance" onSubmit={handleSubmit} method="post">
                             <div className="input-group mb-3">
                                 <input id="paymentNumber" type="number" className="form-control" name="paytm_no" placeholder="Enter Receiver Paytm Number..." readOnly={true} value="7357525272" />
                                 <div className="input-group-append">
@@ -91,7 +95,7 @@ const BuyChips = () => {
                         </div>
                         Paid at another number? Don't worry just <a href="javascript:$('#paymentNumber').attr('readonly', false).val('');$('#copyButton').fadeOut();$('#yourPaytmNumber').fadeIn();playAudio('manualLoad');">click here.</a>
                         <br /><br />
-                        If your <u>Transaction Id</u> is not matching. Don't worry, please <a href="https://wa.me/917357525272?text=My+Transaction+Id+is+not+matching.+My+account+number+is+7357525272" onclick="playAudio('supportAudio');" target="_blank">click here</a> to contact admin or whatsapp your complaint at (+919424627532). Your query will be solved in within 12 hours.
+                        If your <u>Transaction Id</u> is not matching. Don't worry, please <a href="https://wa.me/917357525272?text=My+Transaction+Id+is+not+matching.+My+account+number+is+7357525272" onclick="playAudio('supportAudio');" target="_blank">click here</a> to contact admin or whatsapp your complaint at (+917357525272). Your query will be solved in within 12 hours.
                     </div>
 
                     <br />

@@ -6,7 +6,6 @@ import Axios from 'axios';
 const SellChips = () => {
     const [state, setState] = useState({
         paytm_no: null,
-        txn_ID: '',
         amount: null
     })
     const handleChange = (e) => {
@@ -31,7 +30,7 @@ const SellChips = () => {
                 body: JSON.stringify(state)
             }).then(response => {
                 console.log(response)
-            }, setState({ ...state, chipsSaved: true }))
+            }, setState({ ...state }))
             .catch(error => {
                 console.log(error)
             })
@@ -71,7 +70,6 @@ const SellChips = () => {
                     <div className="form-group">
                         <form onSubmit={handleSubmitbutton} method="post">
                             <input id="paytm_no" onChange={handleChange} value={state.paytm_no} type="number" name="paymentNumber" placeholder="Paytm Number" required={true} className="form-control" /><br />
-                            <input id="txn_ID" type="text" onChange={handleChange} value={state.txn_ID} id="txn_ID" name="txnID" placeholder="Transcation ID" required={true} className="form-control" /><br/>
                             <input type="number" onChange={handleChange} value={state.amount} id="amount" name="paymentAmount" placeholder="Chips Amount" required={true} className="form-control" /><br />
                             <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" onClick={handleSubmit} value="Sell" className="btn btn-success">Sell</button></span>
                         </form>
@@ -79,7 +77,6 @@ const SellChips = () => {
                     <div id="postResponse" className="mssg bg-danger">
                         <span id="check"></span>
                     </div>
-                    <hr />
                     <ul id="challenge-list" className="list-group">
                     </ul>
                 </div>
