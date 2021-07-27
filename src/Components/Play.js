@@ -51,7 +51,7 @@ const Play = (props) => {
 
 
     const handleSubmit = (e) => {
-        if (state.amount <= 50 || state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>)
+        if (state.amount < 50 || state.amount >= 10000 ? window.alert("set challenge Amount between 50 to 10000") : <div></div>)
             Axios.post(
                 'https://ludo-project-backend.herokuapp.com/api/setChallenge',
                 state,

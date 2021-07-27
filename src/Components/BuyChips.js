@@ -95,7 +95,7 @@ const BuyChips = () => {
                         </div>
                         Paid at another number? Don't worry just <a href="javascript:$('#paymentNumber').attr('readonly', false).val('');$('#copyButton').fadeOut();$('#yourPaytmNumber').fadeIn();playAudio('manualLoad');">click here.</a>
                         <br /><br />
-                        If your <u>Transaction Id</u> is not matching. Don't worry, please <a href="https://wa.me/917357525272?text=My+Transaction+Id+is+not+matching.+My+account+number+is+7357525272" onclick="playAudio('supportAudio');" target="_blank">click here</a> to contact admin or whatsapp your complaint at (+919424627532). Your query will be solved in within 12 hours.
+                        If your <u>Transaction Id</u> is not matching. Don't worry, please <a href="https://wa.me/917357525272?text=My+Transaction+Id+is+not+matching.+My+account+number+is+7357525272" onclick="playAudio('supportAudio');" target="_blank">click here</a> to contact admin or whatsapp your complaint at (+917357525272). Your query will be solved in within 12 hours.
                     </div>
 
                     <br />

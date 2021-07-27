@@ -68,7 +68,7 @@ const Admin = () => {
   return (
     <div>
        <div>
-        <a href='/Admin/EditPlayerAmount'>Add or Remove Chips from Player's Account</a>
+        <a href='/Admin/EditPlayerAmount'>Add Chips from Player's Account</a>
       </div>
       <br/>
    
