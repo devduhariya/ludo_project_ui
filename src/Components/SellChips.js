@@ -5,8 +5,8 @@ import Axios from 'axios';
 
 const SellChips = () => {
     const [state, setState] = useState({
-        paytm_no: null,
-        amount: null
+        paytm_no: 0,
+        amount: 0
     })
     const handleChange = (e) => {
         setState((prevState) => ({
@@ -45,12 +45,12 @@ const SellChips = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        Axios.post(
+        Axios.put(
             'https://ludo-project-backend.herokuapp.com/api/sellChips',
             state,
             config
         ).then(res=>{
-            setState(res.data);
+             setState(res.data); 
             console.log("res.data", res.data);
         });
 
@@ -68,7 +68,6 @@ const SellChips = () => {
                             <p className="text-info blink" >Only <span className="text-dark"><b>2 request</b></span> allowed per day.</p>
                             <p className="text-info blink" >एक दिन में सिर्फ <span className="text-dark"><b>2 रिकवेस्ट</b></span> ही ली जाएगी |</p>
                         </div><br />
-                        
                        
                     </div><br />
                     <div className="form-group">
