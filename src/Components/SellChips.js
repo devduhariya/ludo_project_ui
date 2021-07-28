@@ -5,8 +5,8 @@ import Axios from 'axios';
 
 const SellChips = () => {
     const [state, setState] = useState({
-        paytm_no: null,
-        amount: null
+        paytm_no: 0,
+        amount: 0
     })
     const handleChange = (e) => {
         setState((prevState) => ({
@@ -15,27 +15,7 @@ const SellChips = () => {
         }));
     }
 
-    var token = JSON.parse(localStorage.getItem('login'));
-    const handleSubmitbutton = async (e) => {
-        window.location.reload();
-        e.preventDefault();
-        console.log(state);
-        await fetch("https://ludo-project-backend.herokuapp.com/api/sellChips",
-            {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ` + token.token
-                },
-
-                body: JSON.stringify(state)
-            }).then(response => {
-                console.log(response)
-            }, setState({ ...state }))
-            .catch(error => {
-                console.log(error)
-            })
-
-    }
+   
 
     var token = JSON.parse(localStorage.getItem('login'));
     const config = {
@@ -50,7 +30,7 @@ const SellChips = () => {
             state,
             config
         ).then(res=>{
-            setState(res.data);
+             setState(res.data); 
             console.log("res.data", res.data);
         });
 
@@ -63,12 +43,10 @@ const SellChips = () => {
                     <div>
                         <p className="custom-title">Sell Chips<br /><span className="text-info">(1Chip = 1Rupee)</span></p>
                         <p className="text-primary">(Processing Timing: 06:00 PM)</p>
-                        {/* <div style="padding: 5px; border: 2px dotted; border-radius: 10px;"> */}
                         <div>
                             <p className="text-info blink" >Only <span className="text-dark"><b>2 request</b></span> allowed per day.</p>
                             <p className="text-info blink" >एक दिन में सिर्फ <span className="text-dark"><b>2 रिकवेस्ट</b></span> ही ली जाएगी |</p>
                         </div><br />
-                        
                        
                     </div><br />
                     <div className="form-group">
