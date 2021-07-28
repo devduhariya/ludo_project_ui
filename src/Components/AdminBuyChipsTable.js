@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-const Admintable = (props) => {
+const AdminBuyChipsTable = (props) => {
     console.log('pros', props.data);
     const { data } = props;
 
@@ -46,4 +46,4 @@ const Admintable = (props) => {
     )
 }
 
-export default Admintable
+export default AdminBuyChipsTable

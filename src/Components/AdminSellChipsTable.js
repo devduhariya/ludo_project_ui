@@ -11,7 +11,6 @@ const AdminSellChipsTable = (props) => {
                 <thead>
                     <tr>
                         <th>Paytm_no</th>
-                        <th>Purchased Date</th>
                         <th>Amount</th>
                         <th>Status</th>
                         <th colSpan="2" className="text-center">Actions</th>
@@ -27,7 +26,6 @@ const AdminSellChipsTable = (props) => {
                             return (
                                 <tr key={index}>
                                     <td>{result.paytm_no}</td>
-                                    <td>{dt + " || " + time}</td>
                                     <td>{result.amount}</td>
                                     <td>{result.status}</td>
                                     <td><button type="button" onClick={() => props.updateChallengeAmount(result._id)} className="btn btn-primary btn-sm">Verify</button></td>

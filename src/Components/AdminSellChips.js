@@ -11,7 +11,8 @@ const AdminSellChips = () => {
 
     const [data, setdata] = useState([]);
     const [state, setState] = useState({
-        amount: null
+        amount: null,
+        status:''
     })
 
     const getUser = () => {

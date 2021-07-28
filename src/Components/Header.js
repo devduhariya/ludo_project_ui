@@ -69,7 +69,13 @@ const Header = ({ data }) => {
                   {/* {
                     role.token && role.role == "admin" ?
                       <li className="nav-item">
-                        <a className="nav-link" href="/AdminSellChips">Admin Sell Chips</a>
+                        <a className="nav-link" href="/AdminBuyChips">Admin_BuyChips</a>
+                      </li> : null
+                  }
+                  {
+                    role.token && role.role == "admin" ?
+                      <li className="nav-item">
+                        <a className="nav-link" href="/AdminSellChips">Admin_SellChips</a>
                       </li> : null
                   } */}
                   <Totalchips data={data}/>

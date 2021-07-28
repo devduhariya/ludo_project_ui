@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -12,12 +12,14 @@ import Query from './Components/Query';
 import Help from './Components/Help';
 import Register from './Components/Register';
 import TermsandConditions from './Components/TermsAndConditions';
-import Admin from './Components/Admin';
+import Admin from './Components/AdminBuyChips';
 import Play from './Components/Play';
 import Totalchips from './Components/Totalchips';
 import GameResult from './Components/GameResult';
 import GetResult from './Components/GetResult';
 import EditPlayerAmount from './Components/EditPlayerAmount';
+import AdminSellChips from './Components/AdminSellChips';
+import AdminBuyChips from './Components/AdminBuyChips';
  
 function App() {
   const role = JSON.parse(localStorage.getItem('login'));
@@ -44,18 +46,13 @@ function App() {
               <Route exact path='/chips' component={Totalchips} />
               <Route exact path='/gameResult' component={GameResult} />
               <Route exact path='/admin/gameResult' component={GetResult} />
+              <Route exact path='/AdminBuyChips' component={AdminBuyChips} />            
+              <Route exact path='/AdminSellChips' component={AdminSellChips} />         
+              <Route exact path='/Admin/EditPlayerAmount' component={EditPlayerAmount}/> 
               {
                 role.token && role.role == "admin" ?
                   <Route exact path='/Admin' component={Admin} /> : null          
               }
-
-
-              {
-                role.token && role.role == "admin" ?
-                <Route exact path='/Admin/EditPlayerAmount' component={EditPlayerAmount}/> : null
-              }
-
-
             </Switch>
 
             : null}

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import './Style.css';
 
-
 const EditPlayerAmount = () => {
     const [state, setState] = useState({
         paytm_no: null,
@@ -15,9 +14,29 @@ const EditPlayerAmount = () => {
         }));
     }
 
-  
-
     var token = JSON.parse(localStorage.getItem('login'));
+    const handleSubmitbutton = async (e) => {
+        window.location.reload();
+        e.preventDefault();
+        console.log(state);
+        await fetch("https://ludo-project-backend.herokuapp.com/api/buyChips",
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ` + token.token
+                },
+
+                body: JSON.stringify(state)
+            }).then(response => {
+                console.log(response)
+            }, setState({ ...state, chipsSaved: true }))
+            .catch(error => {
+                console.log(error)
+            })
+
+    }
+
+    
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
