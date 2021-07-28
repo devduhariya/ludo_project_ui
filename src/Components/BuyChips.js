@@ -53,7 +53,9 @@ const BuyChips = () => {
         ).then(res=>{
             setState(res.data);
             console.log("res.data", res.data);
-        });
+        },
+        alert("Buy Chips request sent to admin"));
+        window.location.reload();
 
     }
 

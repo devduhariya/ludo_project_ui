@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import '../src/Components/Style.css';
+//import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Components/Login';
@@ -27,6 +28,9 @@ function App() {
 
     <Router>
       <div>
+      {/* <script>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+       </script> */}
         <Header />
         <Switch>
           <Route exact path='/Home' component={Home} />
