@@ -43,12 +43,16 @@ const SellChips = () => {
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
+        e.preventDefault();
         Axios.post(
             'https://ludo-project-backend.herokuapp.com/api/sellChips',
             state,
             config
-        ).then(console.log).catch(console.log);
+        ).then(res=>{
+            setState(res.data);
+            console.log("res.data", res.data);
+        });
 
     }
 
@@ -68,7 +72,7 @@ const SellChips = () => {
                        
                     </div><br />
                     <div className="form-group">
-                        <form onSubmit={handleSubmitbutton} method="post">
+                        <form onSubmit={handleSubmit} method="post">
                             <input id="paytm_no" onChange={handleChange} value={state.paytm_no} type="number" name="paymentNumber" placeholder="Paytm Number" required={true} className="form-control" /><br />
                             <input type="number" onChange={handleChange} value={state.amount} id="amount" name="paymentAmount" placeholder="Chips Amount" required={true} className="form-control" /><br />
                             <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" onClick={handleSubmit} value="Sell" className="btn btn-success">Sell</button></span>
