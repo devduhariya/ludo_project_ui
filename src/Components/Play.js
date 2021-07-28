@@ -15,7 +15,7 @@ const Play = (props) => {
         }));
     }
 
-    
+
     //   };
 
     var token = JSON.parse(localStorage.getItem('login'));
@@ -62,10 +62,14 @@ const Play = (props) => {
     useEffect(() => {
         getChallenge()
     }, [])
-    const updateChallengeAmount = (id) => {
+    const updateChallengeAmount = (id, amount, roomCode) => {
         setState({
-            id: id
+            id: id,
+            amount: amount,
+            roomCode: roomCode
         })
+
+
         // const id  = state.id
         console.log("idd", id);
         Axios.put(`https://ludo-project-backend.herokuapp.com/api/setChallenge/` + id, state,
@@ -73,9 +77,13 @@ const Play = (props) => {
         ).then(res => {
             setData(res.data);
             props.history.push({
-                pathname:'/gameResult',
-                state: { data: id }
-        });
+                pathname: '/gameResult',
+                state: {
+                    id: id,
+                    amount: amount,
+                    roomCode: roomCode
+                }
+            });
             window.location.reload()
             console.log("res.data", res.data);
             // console.log("res.data",res.data._id);
@@ -104,9 +112,14 @@ const Play = (props) => {
             </div>
             <form id="set-challenge-form" className="form-inline" onSubmit={handleSubmitbutton}>
                 <div className="form-group set-challenge-block">
-                    <input style={{ float: 'left', marginRight: '1%' }} onChange={handleChange} name="amount" value={state.amount} type="text" className="form-control input-box" id="amount" placeholder="Amount" />
-                    <input onChange={handleChange} name="roomCode" value={state.roomCode} type="text" className="form-control input-box" id="roomCode" placeholder="Room Code" />
-                    <button style={{ marginLeft: '1%', marginTop: '0.5%' }} onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Set</button>
+                    <input onChange={handleChange} name="amount" value={state.amount} type="text" id="amount" placeholder="Amount" />
+                    <input onChange={handleChange} name="roomCode" value={state.roomCode} type="text" id="roomCode" placeholder="Room Code" />
+                    <div>
+                        <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Set</button>
+                    </div>
+                </div>
+                <div>
+                    <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank">Click here to post Your Result</a>
                 </div>
 
                 <ul id="your-challenge-list" className="list-group">

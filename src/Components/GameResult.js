@@ -1,11 +1,20 @@
 import React from 'react'
 
-const GameResult = () => {
+const GameResult = (props) => {
+    console.log(props.location.state.amount);
+    console.log(props.location.state.roomCode);
     return (
+        <>
         <div>
-            <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank">Click here to post Your Result</a>
+            <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me"  target="_blank">Click here to post Your Result</a>
         </div>
-
+        <div>
+        <b>Challenge Amount : </b>{props.location.state.amount}
+        <br/>
+        <b>Room Code :</b> {props.location.state.roomCode}
+        </div>
+        </>
+        
         // <div>
         //     {/* <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank">Click here to post Your Result</a> */}
         //     <select name="resultBox"
