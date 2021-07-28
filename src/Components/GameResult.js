@@ -5,6 +5,23 @@ const GameResult = () => {
         <div>
             <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank">Click here to post Your Result</a>
         </div>
+
+        // <div>
+        //     {/* <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank">Click here to post Your Result</a> */}
+        //     <select name="resultBox"
+        //         className="form-control"
+        //     >
+        //         <option value="none" selected={true} hidden={true}>Result</option>
+        //         <option value="hide" onChange={handleChange} >won</option>
+        //         <option value="show" onChange={handleChange} >lost</option>
+        //     </select><br />
+        //     <div className="file-upload text-gray-500">
+        //         <label for="file_upload ">ScreenShots: <span className="hightlight-color"></span></label>
+        //         <input type="file" className="file-input" id="file_upload" />
+        //     </div>
+        //     <span className="waves-input-wrapper waves-effect waves-light"><input onClick={handleSubmit} type="submit" value="Submit" className="btn btn-success" /></span>
+
+        // </div>
     )
 }
 
