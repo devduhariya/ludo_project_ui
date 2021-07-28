@@ -12,7 +12,7 @@ import Query from './Components/Query';
 import Help from './Components/Help';
 import Register from './Components/Register';
 import TermsandConditions from './Components/TermsAndConditions';
-import Admin from './Components/AdminBuyChips';
+import Admin from './Components/Admin';
 import Play from './Components/Play';
 import Totalchips from './Components/Totalchips';
 import GameResult from './Components/GameResult';
