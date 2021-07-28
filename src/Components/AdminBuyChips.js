@@ -67,10 +67,10 @@ const AdminBuyChips = () => {
 
   return (
     <div>
-       <div>
+       {/* <div>
         <a href='/Admin/EditPlayerAmount'>Add Chips from Player's Account</a>
       </div>
-      <br/>
+      <br/> */}
    
       <AdminBuyChipsTable data={data}
         updateChallengeAmount={updateChallengeAmount}
