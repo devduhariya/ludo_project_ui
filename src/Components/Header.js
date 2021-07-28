@@ -25,7 +25,7 @@ const Header = ({ data }) => {
   };
   return (
     <div>
-      <nav className={show == true ? "navbar navbar-expand-lg navbar-light bg-light":"navbar navbar-collapse-lg navbar-light bg-light"}>
+      <nav className={ "navbar navbar-expand-lg navbar-light bg-light"}>
         <a className="navbar-brand">Welcome</a>
         <button className="navbar-toggler" type="button" data-toggle={show == false ? "collapse" : "expand"} onClick={handleCollapse}  data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
