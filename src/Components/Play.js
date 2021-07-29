@@ -16,8 +16,6 @@ const Play = (props) => {
     }
 
 
-    //   };
-
     var token = JSON.parse(localStorage.getItem('login'));
     const handleSubmitbutton = async (e) => {
         e.preventDefault();
@@ -86,9 +84,6 @@ const Play = (props) => {
             });
             window.location.reload()
             console.log("res.data", res.data);
-            // console.log("res.data",res.data._id);
-
-
         })
     }
 
