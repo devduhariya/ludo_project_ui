@@ -37,8 +37,7 @@ const BuyChips = () => {
             })
 
     }
-
-    
+ 
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
@@ -54,8 +53,12 @@ const BuyChips = () => {
             setState(res.data);
             console.log("res.data", res.data);
         },
-        alert("Buy Chips request sent to admin"));
-        window.location.reload();
+        setTimeout(() => {
+            alert("Buy Chips request sent to admin");
+            window.location.reload();
+        },800));
+        
+        
 
     }
 

@@ -53,8 +53,11 @@ const SellChips = () => {
             setState(res.data);
             console.log("res.data", res.data);
         },
-        alert("Sell Chips request sent to admin"));
+    
+        setTimeout(() => {
+            alert("Sell Chips request sent to admin");
         window.location.reload();
+        },500));
 
     }
 
