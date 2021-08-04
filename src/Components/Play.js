@@ -77,9 +77,7 @@ const Play = (props) => {
             props.history.push({
                 pathname: '/gameResult',
                 state: {
-                    id: id,
-                    amount: amount,
-                    roomCode: roomCode
+                    id: id
                 }
             });
             window.location.reload()
