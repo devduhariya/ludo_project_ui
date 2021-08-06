@@ -4,7 +4,7 @@ import ChallengeTable from './ChallengeTable';
 
 const Play = (props) => {
     const [state, setState] = useState({
-        amount: null
+        amount: undefined
     })
     const [data, setData] = useState([]);
     const handleChange = (e) => {
@@ -13,7 +13,6 @@ const Play = (props) => {
             [e.target.id]: e.target.value
         }));
     }
-
 
     var token = JSON.parse(localStorage.getItem('login'));
     const handleSubmit = (e) => {
@@ -57,14 +56,25 @@ const Play = (props) => {
         ).then(res => {
             setData(res.data);
             props.history.push({
-                pathname: '/gameResult',
+                pathname: '/WonLost',
                 state: {
-                    id: id
+                    id: id,
+                    resStatus:res.data.changeStatus.status
                 }
             });
             //window.location.reload()
-            console.log("res.data", res.data);
+            console.log("res.data", res.data.changeStatus.status);
         })
+    }
+
+    const viewSetChallenge = (id) =>{
+        props.history.push({
+            pathname: '/WonLost',
+            state: {
+               id : id
+                
+            }
+        });
     }
 
 
@@ -92,17 +102,18 @@ const Play = (props) => {
                         <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Set</button>
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" target="_blank">Click here to post Your Result</a>
-                </div>
+                </div> */}
 
                 <ul id="your-challenge-list" className="list-group">
 
                 </ul>
-                <ChallengeTable data={data}
-                    updateChallengeAmount={updateChallengeAmount}
-                />
             </form>
+            <ChallengeTable data={data}
+                updateChallengeAmount={updateChallengeAmount}
+                viewSetChallenge={viewSetChallenge}
+            />
         </div>
 
     )

@@ -42,7 +42,8 @@ const Login = () => {
         localStorage.setItem('login', JSON.stringify({
           login: true,
           token: result.token,
-          role:result.user.role
+          role:result.user.role,
+          phone:result.user.ph
         }))
         console.log(result.user.role)
         alert("User Successfully Logged In")
