@@ -5,13 +5,17 @@ const WonLost = (props) => {
     const [state, setState] = useState({
         roomCode: null
     })
-
-   
     const [data, setData] = useState([]);
-    const [room,setRoom] = useState([])
+    const [resultData, setResultData] = useState([]);
+    const [gameResult, setGameResult] = useState({
+        screenshots: '',
+        won: false,
+        lost: false
+    })
     const handleChange = (e) => {
 
-        setResultData({ screenshots: e.target.files[0] })
+        setResultData({ screenshots: e.target.value, won:true})
+
     }
     const handleResultChange = (e) => {
         setResultData((prevState) => ({
@@ -22,7 +26,6 @@ const WonLost = (props) => {
     }
 
     var token = JSON.parse(localStorage.getItem('login'));
-    var phone = token.phone
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
@@ -34,29 +37,54 @@ const WonLost = (props) => {
             config
         ).then(res => {
             setData(res.data);
-            console.log("room Code",res.data)
             window.alert("Room Code Set Successfully");
             console.log("res.data", props.location.state.resStatus);
         })
     }
-    
-        const getChallenge = () => {
-            Axios.get(`https://ludo-project-backend.herokuapp.com/api/getRoomCode/`+ props.location.state.id,  
-            config
-            ).then(res => {
-                setRoom(res.data);
-                console.log('res: ', res.data);
-            }).catch(error => {
-                console.log('Error: ', error);
-            });
-        }
 
-        useEffect(() => {
-            getChallenge()
-        }, [])
+   const handelResult=(e)=> {
+        e.preventDefault()
+        // const formData = new FormData()
+        // formData.append('screenshots', gameResult.screenshots)
+        Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+        gameResult,
+        config
+        ).then(res => {
+            console.log(res.data)
+        })
+    }
+
+    // const handelResult = async (e) => {
+    //     e.preventDefault();
+    //     Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+    //         gameResult,
+    //         config
+    //     ).then(res => {
+    //         setState(res.data);
+    //         console.log("res.data", res.data);
+    //     },
+    //         setTimeout(() => {
+    //             alert("Buy Chips request sent to admin");
+    //             // window.location.reload();
+    //         }, 800));
+
+
+
+    // }
+
+    // const handelResult = (e) => {
+    //     e.preventDefault();
+    //     Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+    //         gameResult,
+    //         config
+    //     ).then(res => {
+    //         setGameResult(res.data);
+    //         window.alert("Result posted Successfully");
+    //         console.log("res.data", props.location.state.resStatus);
+    //     })
+    // }
+
     return (
-        <div>
-            
         <div className="row no-gutters justify-content-center">
             <div className="col-sm-9 col-md-8 col-lg-6">
                 <br />
@@ -69,17 +97,19 @@ const WonLost = (props) => {
 
                         <input value="00300716" id="roomIdInput" className="hidden" />
 
-                                                        
-                        <div id="roomIdWaiting">
-                            <p>Room Code : {room}</p>  
-                            <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
-                            <div>
-                                <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
-                            </div>
-                        </div>
-                        
-                        
-                        
+                        {
+
+                            props.location.state.status ?
+                                <div id="roomIdWaiting">
+                                    <p>Opponent accepted your Challenge </p>
+                                    <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
+                                    <div>
+                                        <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
+                                    </div>
+                                </div> :
+                                <p>No</p>
+
+                        }
                         <hr />
 
                         <div className="challengeBetween" style={{ "color": "red !important" }}>
@@ -146,8 +176,6 @@ const WonLost = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
- 
         </div>
 
 
