@@ -9,6 +9,11 @@ const WonLost = (props) => {
    
     const [data, setData] = useState([]);
     const [room,setRoom] = useState([])
+    const [gameResult, setGameResult] = useState({
+        screenshots: '',
+        won: false,
+        lost: false
+    })
     const handleChange = (e) => {
         setState((prevState) => ({
             ...prevState,
@@ -16,6 +21,12 @@ const WonLost = (props) => {
         }));
     }
     
+    const handleResultChange = (e) => {
+        setGameResult((prevState) => ({
+            ...prevState,
+            [e.target.id]: e.target.value
+        }));
+    }
 
     var token = JSON.parse(localStorage.getItem('login'));
     var phone = token.phone
@@ -45,6 +56,21 @@ const WonLost = (props) => {
             }).catch(error => {
                 console.log('Error: ', error);
             });
+        }
+
+
+
+        const handelResult=(e)=> {
+            e.preventDefault()
+            // const formData = new FormData()
+            // formData.append('screenshots', gameResult.screenshots)
+            Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+            gameResult,
+            config
+            ).then(res => {
+                setGameResult(res.data)
+                console.log(res.data)
+            })
         }
 
         useEffect(() => {
@@ -96,13 +122,13 @@ const WonLost = (props) => {
                             <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
                             <div className="form-group challenge-result-block">
                                 <div className="form-check challengeOptions text-success">
-                                    <input className="form-check-input" id="challenge-won"  type="radio" name="challengeResult" value="won" required="" />
+                                    <input className="form-check-input" id="challenge-won"  type="radio" name="challengeResult" onChange={handleResultChange} value="won" required="" />
                                     <label className="form-check-label" htmlFor="challenge-won">
                                         I Won
                                     </label>
                                 </div>
                                 <div className="form-check challengeOptions text-danger">
-                                    <input className="form-check-input" id="challenge-lost" type="radio" name="challengeResult" value="lost" required="" />
+                                    <input className="form-check-input" id="challenge-lost" type="radio" name="challengeResult" onChange={handleResultChange} value="lost" required="" />
                                     <label className="form-check-label" htmlFor="challenge-lost">
                                         I Lost
                                     </label>
@@ -124,20 +150,20 @@ const WonLost = (props) => {
                                         <a href="https://wa.me/919407144049" target="_blank">Click Here to send Video.</a>
                                     </div> */}
                             </div>
-                            <div id="screenShotBlock">
+                            <div id="screenShotBlock" >
                                 <br />
                                 <label>Winning Screen Shot</label>
                                 <div className="custom-file">
-                                    <input type="file" className="custom-file-input" id="screenshots"  accept=".png, .jpg, .jpeg" required="" />
-                                    <label className="custom-file-label" for="screenShot">Upload</label>
+                                    <input type="file" className="custom-file-input" id="screenshots" onChange={handleResultChange} accept=".png, .jpg, .jpeg" required="" />
+                                    {/* <label className="custom-file-label" for="screenShot">Upload</label> */}
                                 </div>
                                 <br /><br />
-                                <div id="screenShot-upload" style={{ "display": "none;" }} />
-                                <img className="img-fluid" alt="Responsive image" /><br />
+                                {/* <div id="screenShot-upload" style={{ "display": "none;" }} />
+                                <img className="img-fluid" alt="Responsive image" /><br /> */}
                             </div>
                             {/* </div> */}
                             <br />
-                            <span className="waves-input-wrapper waves-effect waves-light"><input type="submit" value="Post Result"  className="btn btn-primary" /></span>
+                            <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Post Result" onClick={handelResult} className="btn btn-primary" >Upload</button></span>
                         </form>
                     </div>
                 </div>
