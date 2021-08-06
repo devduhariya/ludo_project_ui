@@ -68,7 +68,9 @@ const WonLost = (props) => {
                                                         
                         <div id="roomIdWaiting">
                             <p>Room Code : {room}</p>  
-                            <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
+                            
+                                <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
+                           
                             <div>
                                 <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
                             </div>
