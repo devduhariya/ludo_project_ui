@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ChallengeTable = (props) => {
-    console.log('pros', props.data);
+    console.log('pros', props);
     const { data } = props;
     var token = JSON.parse(localStorage.getItem('login'));
     var phone = token.phone
@@ -10,7 +10,9 @@ const ChallengeTable = (props) => {
         <div>
             {data.length > 0 ? data.map((result) => {
                 return (
+                    
                     <form >
+                        { result.status = "pending"   ?
                         <ul key={result._id} id="challenge-list" className="list-group">
                             {
                                 result.amount > 50 || result.amount < 10000 ?
@@ -25,12 +27,12 @@ const ChallengeTable = (props) => {
                                                     <div className="challengeText">
 
                                                         {result.name} have set a Challenge for <span style={{ "backgroundColor": "antiquewhite", "padding": "2px", "display": "inline-block" }}><b>{result.amount}</b></span>
-                                                        &nbsp;   room code-<b>{result.roomCode}</b></div>
+                                                        </div>
                                             }
                                             <div className="challengeButton">
                                                 {
                                                     result.paytm_no === phone ?
-                                                        <button type="button" onClick={() => props.viewSetChallenge(result._id)} className="btn btn-primary btn-sm">View</button>
+                                                        <button type="button" onClick={() => props.viewSetChallenge(result._id,result.status)} className="btn btn-primary btn-sm">View</button>
                                                         :
                                                         <button type="button" onClick={() => props.updateChallengeAmount(result._id, result.amount)} className="btn btn-primary btn-sm">Play</button>
 
@@ -40,7 +42,8 @@ const ChallengeTable = (props) => {
                                         </div>
                                     </li> : null
                             }
-                        </ul>
+                        </ul>:null
+            }
                     </form>
                 )
             }) : <div>Loading challenges...</div>

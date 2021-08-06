@@ -26,7 +26,7 @@ const WonLost = (props) => {
         ).then(res => {
             setData(res.data);
             window.alert("Room Code Set Successfully");
-            console.log("res.data", props.location.state.data);
+            console.log("res.data", props.location.state.resStatus);
         })
     }
 
@@ -44,15 +44,16 @@ const WonLost = (props) => {
                         <input value="00300716" id="roomIdInput" className="hidden" />
 
                        {
-                        props.location.state.resStatus = "Accepted" ? 
+                        
+                        props.location.state.status =  "Accepted"  ? 
                         <div id="roomIdWaiting">
                            <p>Opponent accepted your Challenge </p>
                             <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
                             <div>
                                 <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
                             </div>
-                        </div>:
-                        <p>Nothing</p>}
+                        </div>:<p>No</p>
+                        }
                         <hr />
 
                         <div className="challengeBetween" style={{ "color": "red !important" }}>
