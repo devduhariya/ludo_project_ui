@@ -20,6 +20,7 @@ import GetResult from './Components/GetResult';
 import EditPlayerAmount from './Components/EditPlayerAmount';
 import AdminSellChips from './Components/AdminSellChips';
 import AdminBuyChips from './Components/AdminBuyChips';
+import WonLost from './Components/WonLost';
  
 function App() {
   const role = JSON.parse(localStorage.getItem('login'));
@@ -51,7 +52,8 @@ function App() {
               <Route exact path='/admin/gameResult' component={GetResult} />
               <Route exact path='/AdminBuyChips' component={AdminBuyChips} />            
               <Route exact path='/AdminSellChips' component={AdminSellChips} />         
-              <Route exact path='/Admin/EditPlayerAmount' component={EditPlayerAmount}/> 
+              <Route exact path='/Admin/EditPlayerAmount' component={EditPlayerAmount}/>
+              <Route exact path='/WonLost' component={WonLost}/> 
               {
                 role.token && role.role == "admin" ?
                   <Route exact path='/Admin' component={Admin} /> : null          
