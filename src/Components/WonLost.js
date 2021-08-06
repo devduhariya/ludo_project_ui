@@ -10,16 +10,12 @@ const WonLost = (props) => {
     const [data, setData] = useState([]);
     const [room,setRoom] = useState([])
     const handleChange = (e) => {
-
-        setResultData({ screenshots: e.target.files[0] })
-    }
-    const handleResultChange = (e) => {
-        setResultData((prevState) => ({
+        setState((prevState) => ({
             ...prevState,
-            [e.target.id]: e.target.value,
-            //  screenshots: e.target.files
+            [e.target.id]: e.target.value
         }));
     }
+    
 
     var token = JSON.parse(localStorage.getItem('login'));
     var phone = token.phone
@@ -100,13 +96,13 @@ const WonLost = (props) => {
                             <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
                             <div className="form-group challenge-result-block">
                                 <div className="form-check challengeOptions text-success">
-                                    <input className="form-check-input" id="challenge-won" onChange={handleResultChange} type="radio" name="challengeResult" value="won" required="" />
+                                    <input className="form-check-input" id="challenge-won"  type="radio" name="challengeResult" value="won" required="" />
                                     <label className="form-check-label" htmlFor="challenge-won">
                                         I Won
                                     </label>
                                 </div>
                                 <div className="form-check challengeOptions text-danger">
-                                    <input className="form-check-input" id="challenge-lost" onChange={handleResultChange} type="radio" name="challengeResult" value="lost" required="" />
+                                    <input className="form-check-input" id="challenge-lost" type="radio" name="challengeResult" value="lost" required="" />
                                     <label className="form-check-label" htmlFor="challenge-lost">
                                         I Lost
                                     </label>
@@ -132,7 +128,7 @@ const WonLost = (props) => {
                                 <br />
                                 <label>Winning Screen Shot</label>
                                 <div className="custom-file">
-                                    <input type="file" className="custom-file-input" id="screenshots" onChange={handleResultChange} accept=".png, .jpg, .jpeg" required="" />
+                                    <input type="file" className="custom-file-input" id="screenshots"  accept=".png, .jpg, .jpeg" required="" />
                                     <label className="custom-file-label" for="screenShot">Upload</label>
                                 </div>
                                 <br /><br />
@@ -141,7 +137,7 @@ const WonLost = (props) => {
                             </div>
                             {/* </div> */}
                             <br />
-                            <span className="waves-input-wrapper waves-effect waves-light"><input type="submit" value="Post Result" onClick={handelResult} className="btn btn-primary" /></span>
+                            <span className="waves-input-wrapper waves-effect waves-light"><input type="submit" value="Post Result"  className="btn btn-primary" /></span>
                         </form>
                     </div>
                 </div>
