@@ -46,10 +46,10 @@ const Play = (props) => {
     useEffect(() => {
         getChallenge()
     }, [])
-    const updateChallengeAmount = (id, amount,status) => {
+    const updateChallengeAmount = (id, amount) => {
         setState({
             id: id,
-            amount: amount,
+            amount: amount
         })
 
         console.log("idd", id);
@@ -61,7 +61,7 @@ const Play = (props) => {
                 pathname: '/WonLost',
                 state: {
                     id: id,
-                    status: res.data.changeStatus.status
+                    status:res.data.changeStatus.status
                 }
             });
             //window.location.reload()
@@ -73,8 +73,7 @@ const Play = (props) => {
         props.history.push({
             pathname: '/WonLost',
             state: {
-               id : id,
-               
+               id : id
                 
             }
         });
