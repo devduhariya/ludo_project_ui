@@ -5,7 +5,10 @@ const WonLost = (props) => {
     const [state, setState] = useState({
         roomCode: null
     })
+
+   
     const [data, setData] = useState([]);
+    const [room,setRoom] = useState([])
     const handleChange = (e) => {
         setState((prevState) => ({
             ...prevState,
@@ -14,6 +17,7 @@ const WonLost = (props) => {
     }
 
     var token = JSON.parse(localStorage.getItem('login'));
+    var phone = token.phone
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
@@ -25,12 +29,29 @@ const WonLost = (props) => {
         config
         ).then(res => {
             setData(res.data);
+            console.log("room Code",res.data)
             window.alert("Room Code Set Successfully");
             console.log("res.data", props.location.state.resStatus);
         })
     }
+    
+        const getChallenge = () => {
+            Axios.get(`https://ludo-project-backend.herokuapp.com/api/getRoomCode/`+ props.location.state.id,  
+            config
+            ).then(res => {
+                setRoom(res.data);
+                console.log('res: ', res.data);
+            }).catch(error => {
+                console.log('Error: ', error);
+            });
+        }
 
+        useEffect(() => {
+            getChallenge()
+        }, [])
     return (
+        <div>
+            
         <div className="row no-gutters justify-content-center">
             <div className="col-sm-9 col-md-8 col-lg-6">
                 <br />
@@ -43,19 +64,17 @@ const WonLost = (props) => {
 
                         <input value="00300716" id="roomIdInput" className="hidden" />
 
-                       {
-                        
-                        props.location.state.status ? 
+                                                        
                         <div id="roomIdWaiting">
-                           <p>Opponent accepted your Challenge </p>
+                            <p>Room Code : {room}</p>  
                             <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
                             <div>
                                 <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
                             </div>
-                        </div>:
-                        <p>No</p>
+                        </div>
                         
-                        }
+                        
+                        
                         <hr />
 
                         <div className="challengeBetween" style={{ "color": "red !important" }}>
@@ -125,6 +144,8 @@ const WonLost = (props) => {
                     </div>
                 </div>
             </div>
+        </div>
+ 
         </div>
 
 

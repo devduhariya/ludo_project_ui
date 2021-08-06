@@ -61,7 +61,8 @@ const Play = (props) => {
                 pathname: '/WonLost',
                 state: {
                     id: id,
-                    status:res.data.changeStatus.status
+                    status:res.data.changeStatus.status,
+                    phone:res.data.paytm_no
                 }
             });
             //window.location.reload()
