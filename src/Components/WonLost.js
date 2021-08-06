@@ -6,10 +6,21 @@ const WonLost = (props) => {
         roomCode: null
     })
     const [data, setData] = useState([]);
+    const [resultData, setResultData] = useState([]);
+    const [gameResult, setGameResult] = useState({
+        won: null,
+        lost: null,
+        screenshots: ''
+    })
     const handleChange = (e) => {
-        setState((prevState) => ({
+
+        setResultData({ screenshots: e.target.files[0] })
+    }
+    const handleResultChange = (e) => {
+        setResultData((prevState) => ({
             ...prevState,
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
+            //  screenshots: e.target.files
         }));
     }
 
@@ -20,12 +31,26 @@ const WonLost = (props) => {
     console.log("res.id", props.location.state.id);
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.put(`https://ludo-project-backend.herokuapp.com/api/roomCode/` + props.location.state.id, 
-        state,
-        config
+        Axios.put(`https://ludo-project-backend.herokuapp.com/api/roomCode/` + props.location.state.id,
+            state,
+            config
         ).then(res => {
             setData(res.data);
             window.alert("Room Code Set Successfully");
+            console.log("res.data", props.location.state.resStatus);
+        })
+    }
+
+
+
+    const handelResult = (e) => {
+        e.preventDefault();
+        Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+            gameResult,
+            config
+        ).then(res => {
+            setGameResult(res.data);
+            window.alert("Result posted Successfully");
             console.log("res.data", props.location.state.resStatus);
         })
     }
@@ -43,16 +68,16 @@ const WonLost = (props) => {
 
                         <input value="00300716" id="roomIdInput" className="hidden" />
 
-                       {
-                        
-                        props.location.state.status =  "Accepted"  ? 
-                        <div id="roomIdWaiting">
-                           <p>Opponent accepted your Challenge </p>
-                            <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
-                            <div>
-                                <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
-                            </div>
-                        </div>:<p>No</p>
+                        {
+
+                            props.location.state.status = "Accepted" ?
+                                <div id="roomIdWaiting">
+                                    <p>Opponent accepted your Challenge </p>
+                                    <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
+                                    <div>
+                                        <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
+                                    </div>
+                                </div> : <p>No</p>
                         }
                         <hr />
 
@@ -74,13 +99,13 @@ const WonLost = (props) => {
                             <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
                             <div className="form-group challenge-result-block">
                                 <div className="form-check challengeOptions text-success">
-                                    <input className="form-check-input" id="challenge-won" type="radio" name="challengeResult" value="won" required="" />
+                                    <input className="form-check-input" id="challenge-won" onChange={handleResultChange} type="radio" name="challengeResult" value="won" required="" />
                                     <label className="form-check-label" htmlFor="challenge-won">
                                         I Won
                                     </label>
                                 </div>
                                 <div className="form-check challengeOptions text-danger">
-                                    <input className="form-check-input" id="challenge-lost" type="radio" name="challengeResult" value="lost" required="" />
+                                    <input className="form-check-input" id="challenge-lost" onChange={handleResultChange} type="radio" name="challengeResult" value="lost" required="" />
                                     <label className="form-check-label" htmlFor="challenge-lost">
                                         I Lost
                                     </label>
@@ -91,7 +116,7 @@ const WonLost = (props) => {
                                         Cancel Game
                                     </label>
                                 </div> */}
-                                <div id="cancelReasonBlock" style={{ "display": "none" }}>
+                                {/* <div id="cancelReasonBlock" style={{ "display": "none" }}>
                                     <div className="form-group" style={{ "display": "block !important" }}>
                                         <label htmlFor="cancelReason">Cancel Reason</label>
                                         <textarea name="cancelReason" className="form-control" id="cancelReason" rows="2" maxLength="50"></textarea>
@@ -100,25 +125,22 @@ const WonLost = (props) => {
                                     <div className="challengeBetween">
                                         <h6 className="card-text text-info">Mention if you have VIDEO PROOF and send it on whatsapp at 9407144049</h6>
                                         <a href="https://wa.me/919407144049" target="_blank">Click Here to send Video.</a>
-                                    </div>
-                                </div>
-                                {/* <div id="screenShotBlock">
-                                    <br />
-                                    <label>Winning Screen Shot</label>
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="screenShot" accept=".png, .jpg, .jpeg" required="" />
-                                        <label className="custom-file-label" for="screenShot">Upload</label>
-                                    </div>
-                                    <br /><br />
-                                    <div id="screenShot-upload" style={{ "display": "none;" }} />
-                                    <img className="img-fluid" alt="Responsive image" /><br />
-                                </div> */}
+                                    </div> */}
                             </div>
+                            <div id="screenShotBlock">
+                                <br />
+                                <label>Winning Screen Shot</label>
+                                <div className="custom-file">
+                                    <input type="file" className="custom-file-input" id="screenshots" onChange={handleResultChange} accept=".png, .jpg, .jpeg" required="" />
+                                    <label className="custom-file-label" for="screenShot">Upload</label>
+                                </div>
+                                <br /><br />
+                                <div id="screenShot-upload" style={{ "display": "none;" }} />
+                                <img className="img-fluid" alt="Responsive image" /><br />
+                            </div>
+                            {/* </div> */}
                             <br />
-                            <span className="waves-input-wrapper waves-effect waves-light"><input  type="submit" value="Post Result" className="btn btn-primary" /></span>
- 
-
-
+                            <span className="waves-input-wrapper waves-effect waves-light"><input type="submit" value="Post Result" onClick={handelResult} className="btn btn-primary" /></span>
                         </form>
                     </div>
                 </div>
