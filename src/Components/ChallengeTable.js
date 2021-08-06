@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ChallengeTable = (props) => {
-    console.log('pros', props);
+    console.log('pros', props.data);
     const { data } = props;
     var token = JSON.parse(localStorage.getItem('login'));
     var phone = token.phone
@@ -12,7 +12,7 @@ const ChallengeTable = (props) => {
                 return (
                     
                     <form >
-                        { result.status = "pending"   ?
+                        
                         <ul key={result._id} id="challenge-list" className="list-group">
                             {
                                 result.amount > 50 || result.amount < 10000 ?
@@ -32,7 +32,7 @@ const ChallengeTable = (props) => {
                                             <div className="challengeButton">
                                                 {
                                                     result.paytm_no === phone ?
-                                                        <button type="button" onClick={() => props.viewSetChallenge(result._id,result.status)} className="btn btn-primary btn-sm">View</button>
+                                                        <button type="button" onClick={() => props.viewSetChallenge(result._id)} className="btn btn-primary btn-sm">View</button>
                                                         :
                                                         <button type="button" onClick={() => props.updateChallengeAmount(result._id, result.amount)} className="btn btn-primary btn-sm">Play</button>
 
@@ -42,8 +42,8 @@ const ChallengeTable = (props) => {
                                         </div>
                                     </li> : null
                             }
-                        </ul>:null
-            }
+                        </ul>
+            
                     </form>
                 )
             }) : <div>Loading challenges...</div>

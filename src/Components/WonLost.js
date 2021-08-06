@@ -68,16 +68,18 @@ const WonLost = (props) => {
 
                         <input value="00300716" id="roomIdInput" className="hidden" />
 
-                        {
-
-                            props.location.state.status = "Accepted" ?
-                                <div id="roomIdWaiting">
-                                    <p>Opponent accepted your Challenge </p>
-                                    <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
-                                    <div>
-                                        <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
-                                    </div>
-                                </div> : <p>No</p>
+                       {
+                        
+                        props.location.state.status ? 
+                        <div id="roomIdWaiting">
+                           <p>Opponent accepted your Challenge </p>
+                            <input onChange={handleChange} value={state.roomCode} name="roomCode" type="text" id="roomCode" placeholder="RoomCode" />
+                            <div>
+                                <button onClick={handleSubmit} type="submit" className="btn btn-primary waves-effect waves-light">Submit</button>
+                            </div>
+                        </div>:
+                        <p>No</p>
+                        
                         }
                         <hr />
 
