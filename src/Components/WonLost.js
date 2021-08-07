@@ -10,8 +10,8 @@ const WonLost = (props) => {
     const [data, setData] = useState([]);
     const [room, setRoom] = useState([])
     const [gameResult, setGameResult] = useState({
-        won: false,
-        screenshots: ''
+        screenshots: '',
+        won: false,   
     })
     const handleChange = (e) => {
         setState((prevState) => ({
@@ -31,7 +31,7 @@ const WonLost = (props) => {
             default:
                setGameResult((prevState) => ({
                 ...prevState,
-                won: e.target.value
+                [e.target.id]: e.target.value
           }))
 
         }}
@@ -80,7 +80,7 @@ const WonLost = (props) => {
             formData,
             config
         ).then(res => {
-            setGameResult(res)
+            setGameResult(res.data)
             console.log("Game Result",gameResult)
 
         })
