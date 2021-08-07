@@ -32,7 +32,7 @@ const ChallengeTable = (props) => {
                                             <div className="challengeButton">
                                                 {
                                                     result.paytm_no === phone ?
-                                                        <button type="button" onClick={() => props.viewSetChallenge(result._id)} className="btn btn-primary btn-sm">View</button>
+                                                        <button type="button" onClick={() => props.viewSetChallenge(result._id,result.paytm_no)} className="btn btn-primary btn-sm">View</button>
                                                         :
                                                         <button type="button" onClick={() => props.updateChallengeAmount(result._id, result.amount,result.paytm_no)} className="btn btn-primary btn-sm">Play</button>
 

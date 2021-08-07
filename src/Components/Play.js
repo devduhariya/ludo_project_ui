@@ -51,7 +51,7 @@ const Play = (props) => {
             id: id,
             amount: amount
         })
-
+// const phone = null
         console.log("idd", id);
         Axios.put(`https://ludo-project-backend.herokuapp.com/api/setChallenge/` + id, state,
             config
@@ -70,14 +70,15 @@ const Play = (props) => {
         })
     }
 
-    const viewSetChallenge = (id) =>{
+    const viewSetChallenge = (id,phone) =>{
         props.history.push({
             pathname: '/WonLost',
             state: {
-               id : id
-                
+               id : id,
+               phone:phone
             }
         });
+        console.log("phone play",phone)
     }
 
 
