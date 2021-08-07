@@ -10,7 +10,6 @@ const WonLost = (props) => {
     const [data, setData] = useState([]);
     const [room, setRoom] = useState([])
     const [gameResult, setGameResult] = useState({
-        won: false,
         screenshots: ''
     })
     const handleChange = (e) => {
@@ -20,22 +19,23 @@ const WonLost = (props) => {
         }));
     }
 
-    const handleResultChange = (e) =>{
-        switch (e.target.value) {
-            case 'selectedFile':
-                setGameResult((prevState) => ({
-                    ...prevState,
-                    screenshots: e.target.files[0]
-                }));
-              break;
-            default:
-               setGameResult((prevState) => ({
-                ...prevState,
-                won: e.target.value
-          }))
+    const handleResultChange = (e) => {
+        // switch (e.target.value) {
+        //     case 'screenshots':
+        setGameResult((prevState) => ({
+            ...prevState,
+            screenshots: e.target.files[0]
+        }));
+        //   break;
+        // default:
+        //    setGameResult((prevState) => ({
+        //     ...prevState,
+        //     ({ [e.target.name]: e.target.value });
+        //   }))
 
-        }}
-    
+        // }
+    }
+
 
     var token = JSON.parse(localStorage.getItem('login'));
     var phone = token.phone
@@ -55,7 +55,7 @@ const WonLost = (props) => {
             console.log("res.data", props.location.state.resStatus);
         })
     }
-    let userPhoneNumber =  props.location.state.phone
+    let userPhoneNumber = props.location.state.phone
     const getChallenge = () => {
         Axios.get(`https://ludo-project-backend.herokuapp.com/api/getRoomCode/` + props.location.state.id,
             config
@@ -75,20 +75,20 @@ const WonLost = (props) => {
         e.preventDefault()
         const formData = new FormData();
         formData.append('screenshots', gameResult.screenshots);
-        formData.append('won', gameResult.won);
-        Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+        // formData.append('won', gameResult.won);
+        Axios.post(`https://ludo-project-backend.herokuapp.com/upload/` + props.location.state.id,
             formData,
             config
         ).then(res => {
-            setGameResult(res)
-            console.log("Game Result",gameResult)
+            // setGameResult(res)
+            console.log("Game Result", res)
 
         })
     }
 
     useEffect(() => {
         getChallenge()
-    },[])
+    }, [])
     return (
         <div>
 
@@ -131,7 +131,9 @@ const WonLost = (props) => {
                             <hr />
                             <h4>POST RESULT</h4>
                             <hr />
-                            <form  onSubmit={handelResult} id="challenge-result-form" className="form-inline">
+                            <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank" rel="noreferrer">Post your Result here</a>
+
+                            {/* <form onSubmit={handelResult} id="challenge-result-form" className="form-inline">
                                 <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
                                 <div className="form-group challenge-result-block">
                                     <div className="form-check challengeOptions text-success">
@@ -146,13 +148,13 @@ const WonLost = (props) => {
                                             I Lost
                                         </label>
                                     </div>
-                                    {/* <div className="form-check challengeOptions text-warning">
+                                <div className="form-check challengeOptions text-warning">
                                     <input className="form-check-input" id="challenge-cancel" type="radio" name="challengeResult" value="cancel" required="" />
                                     <label className="form-check-label" for="challenge-cancel">
                                         Cancel Game
                                     </label>
-                                </div> */}
-                                    {/* <div id="cancelReasonBlock" style={{ "display": "none" }}>
+                                </div>
+                                <div id="cancelReasonBlock" style={{ "display": "none" }}>
                                     <div className="form-group" style={{ "display": "block !important" }}>
                                         <label htmlFor="cancelReason">Cancel Reason</label>
                                         <textarea name="cancelReason" className="form-control" id="cancelReason" rows="2" maxLength="50"></textarea>
@@ -161,23 +163,29 @@ const WonLost = (props) => {
                                     <div className="challengeBetween">
                                         <h6 className="card-text text-info">Mention if you have VIDEO PROOF and send it on whatsapp at 9407144049</h6>
                                         <a href="https://wa.me/919407144049" target="_blank">Click Here to send Video.</a>
-                                    </div> */}
+                                    </div>
                                 </div>
                                 <div id="screenShotBlock" >
                                     <br />
                                     <label>Winning Screen Shot</label>
                                     <div className="custom-file">
                                         <input type="file" name="screenshots" className="custom-file-input" id="screenshots" onChange={handleResultChange} value={gameResult.screenshots} accept=".png, .jpg, .jpeg" />
-                                        {/* <label className="custom-file-label" for="screenShot">Upload</label> */}
+                                        <label className="custom-file-label" for="screenShot">Upload</label>
                                     </div>
+                                    <input
+                                        type="file"
+                                        name="screenshots"
+                                        onChange={handleResultChange}
+                                    />
+
                                     <br /><br />
-                                    {/* <div id="screenShot-upload" style={{ "display": "none;" }} />
-                                <img className="img-fluid" alt="Responsive image" /><br /> */}
+                                    <div id="screenShot-upload" style={{ "display": "none;" }} />
+                                <img className="img-fluid" alt="Responsive image" /><br />
                                 </div>
-                                {/* </div> */}
+                                </div>
                                 <br />
                                 <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Post Result" onClick={handelResult} className="btn btn-primary" >Upload</button></span>
-                            </form>
+                            </form> */}
                         </div>
                     </div>
                 </div>
