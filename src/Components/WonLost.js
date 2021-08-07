@@ -10,9 +10,8 @@ const WonLost = (props) => {
     const [data, setData] = useState([]);
     const [room, setRoom] = useState([])
     const [gameResult, setGameResult] = useState({
-        screenshots: '',
         won: false,
-        lost: false
+        screenshots: ''
     })
     const handleChange = (e) => {
         setState((prevState) => ({
@@ -21,19 +20,29 @@ const WonLost = (props) => {
         }));
     }
 
-    const handleResultChange = (e) => {
-        setGameResult((prevState) => ({
-            ...prevState,
-            [e.target.id]: e.target.value
-        }));
-    }
+    const handleResultChange = (e) =>{
+        switch (e.target.value) {
+            case 'selectedFile':
+                setGameResult((prevState) => ({
+                    ...prevState,
+                    screenshots: e.target.files[0]
+                }));
+              break;
+            default:
+               setGameResult((prevState) => ({
+                ...prevState,
+                won: e.target.value
+          }))
+
+        }}
+    
 
     var token = JSON.parse(localStorage.getItem('login'));
     var phone = token.phone
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
-    console.log("res.id", props.location.state.phone);
+    //console.log("res.id", props.location.state.id);
     const handleSubmit = (e) => {
         e.preventDefault();
         Axios.put(`https://ludo-project-backend.herokuapp.com/api/roomCode/` + props.location.state.id,
@@ -64,21 +73,22 @@ const WonLost = (props) => {
 
     const handelResult = (e) => {
         e.preventDefault()
-        // const formData = new FormData()
-        // formData.append('screenshots', gameResult.screenshots)
+        const formData = new FormData();
+        formData.append('screenshots', gameResult.screenshots);
+        formData.append('won', gameResult.won);
         Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
-            gameResult,
+            formData,
             config
         ).then(res => {
-            setGameResult(res.data)
-            // console.log(res.data.paytm_no)
+            setGameResult(res)
+            console.log("Game Result",gameResult)
 
         })
     }
 
     useEffect(() => {
         getChallenge()
-    })
+    },[])
     return (
         <div>
 
@@ -121,17 +131,17 @@ const WonLost = (props) => {
                             <hr />
                             <h4>POST RESULT</h4>
                             <hr />
-                            <form id="challenge-result-form" className="form-inline">
+                            <form  onSubmit={handelResult} id="challenge-result-form" className="form-inline">
                                 <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
                                 <div className="form-group challenge-result-block">
                                     <div className="form-check challengeOptions text-success">
-                                        <input className="form-check-input" id="challenge-won" type="radio" name="challengeResult" onChange={handleResultChange} value="won" required="" />
+                                        <input className="form-check-input" id="won" value={true} type="radio"  name="won" onChange={handleResultChange} />
                                         <label className="form-check-label" htmlFor="challenge-won">
                                             I Won
                                         </label>
                                     </div>
                                     <div className="form-check challengeOptions text-danger">
-                                        <input className="form-check-input" id="challenge-lost" type="radio" name="challengeResult" onChange={handleResultChange} value="lost" required="" />
+                                        <input className="form-check-input" id="lost" value= {false} type="radio" name="won"   onChange={handleResultChange}   />
                                         <label className="form-check-label" htmlFor="challenge-lost">
                                             I Lost
                                         </label>
@@ -157,7 +167,7 @@ const WonLost = (props) => {
                                     <br />
                                     <label>Winning Screen Shot</label>
                                     <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="screenshots" onChange={handleResultChange} accept=".png, .jpg, .jpeg" required="" />
+                                        <input type="file" name="screenshots" className="custom-file-input" id="screenshots" onChange={handleResultChange} value={gameResult.screenshots} accept=".png, .jpg, .jpeg" />
                                         {/* <label className="custom-file-label" for="screenShot">Upload</label> */}
                                     </div>
                                     <br /><br />
