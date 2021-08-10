@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-const WonLost = (props) => {
+const EditWonLost = (props) => {
     const [state, setState] = useState({
         roomCode: null
     })
 
 
     const [data, setData] = useState([]);
+    const [result, setResult] = useState([]);
     const [room, setRoom] = useState([])
     const [gameResult, setGameResult] = useState(
         {
@@ -35,23 +36,6 @@ const WonLost = (props) => {
         const value = str2bool(e.target.value);
         setGameResult({ won: value });
     }
-    // const handleResultChange = (e) => {
-    //     switch (e.target.value) {
-    //         case 'screenshots':
-    //     setGameResult((prevState) => ({
-    //         ...prevState,
-    //         screenshots: e.target.files[0]
-    //     }));
-    //       break;
-    //     default:
-    //        setGameResult((prevState) => ({
-    //         ...prevState,
-    //          [e.target.name]: e.target.value }
-    //        ))
-
-    //     }
-    // }
-
 
 
     var token = JSON.parse(localStorage.getItem('login'));
@@ -59,7 +43,7 @@ const WonLost = (props) => {
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
-    //console.log("res.id", props.location.state.id);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         Axios.put(`https://ludo-project-backend.herokuapp.com/api/roomCode/` + props.location.state.id,
@@ -78,9 +62,17 @@ const WonLost = (props) => {
             config
         ).then(res => {
             setRoom(res.data.roomCode);
-            // userPhoneNumber = res.data.paytm_no
             console.log('res: ', userPhoneNumber, phone);
-            // console.log('tokenphone: ', phone);
+        }).catch(error => {
+            console.log('Error: ', error);
+        });
+    }
+    const getResult = () => {
+        Axios.get(`https://ludo-project-backend.herokuapp.com/api/results`,
+            config
+        ).then(res => {
+            setResult(res.data);
+            console.log("result", result);
         }).catch(error => {
             console.log('Error: ', error);
         });
@@ -88,36 +80,24 @@ const WonLost = (props) => {
 
 
 
-    // const handelResult = (e) => {
-    //     e.preventDefault()
-    //     const formData = new FormData();
-    //     formData.append('screenshots', gameResult.screenshots);
-    //     formData.append('won', gameResult.won);
-    //     Axios.post(`https://ludo-project-backend.herokuapp.com/upload/` + props.location.state.id,
-    //         formData,
-    //         config
-    //     ).then(res => {
-    //         setGameResult(res)
-    //         console.log("Game Result", res)
-
-    //     })
-    // }
-
-    const handleResult = (e) => {
+    const editResult = (e) => {
         e.preventDefault()
-        Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
+        Axios.put(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
             gameResult,
             config
         ).then(res => {
-             setGameResult(res.data);
-             window.alert("Result submitted Successfully");
-            console.log("Game Result", res.data)
+            setGameResult(res.data);
+            window.alert("Result submitted Successfully");
+            console.log("Game Result", res)
 
         })
     }
 
+
     useEffect(() => {
         getChallenge()
+        getResult()
+       
     }, [])
     return (
         <div>
@@ -161,39 +141,38 @@ const WonLost = (props) => {
                             <hr />
                             <h4>POST RESULT</h4>
                             <hr />
-                            <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onclick="playAudio('supportAudio');" target="_blank" rel="noreferrer">Post your Result here</a>
-
-                            <form onSubmit={handleResult} id="challenge-result-form" className="form-inline">
-                                <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
-                                <div className="form-group challenge-result-block">
-                                    <div className="form-check challengeOptions text-success">
-                                        <input className="form-check-input" id="won" value={gameResult.won} type="radio" name="won" onChange={handleRadioInput} />
-                                        <label className="form-check-label" htmlFor="challenge-won">
-                                            I Won
-                                        </label>
+                            <a href="https://wa.me/917357525272?text=How+To+Play,+Please+Guide+Me" onClick="playAudio('supportAudio');" target="_blank" rel="noreferrer">Post your Result here</a>
+                            { 
+                            result.length>0 ? result.map((results)=>{
+                            
+                                <form onSubmit={editResult} id="challenge-result-form" className="form-inline">
+                                        <p>{results.data}</p>
+                                    <input className="hidden" name="challengeId" value="gnXEsYaidtSsGsbPBm5OTITOYStHiPjn" />
+                                    <div className="form-group challenge-result-block">
+                                        <div className="form-check challengeOptions text-success">
+                                            <input className="form-check-input" id="won" value={gameResult.won} type="radio" name="won" onChange={handleRadioInput} />
+                                            <label className="form-check-label" htmlFor="challenge-won">
+                                                I Won
+                                            </label>
+                                        </div>
+                                        <div className="form-check challengeOptions text-danger">
+                                            <input className="form-check-input" id="lost" value={!gameResult.won} type="radio" name="won" onChange={handleRadioInput} />
+                                            <label className="form-check-label" htmlFor="challenge-lost">
+                                                I Lost
+                                            </label>
+                                        </div>
+                                        <div id="cancelReasonBlock" style={{ "display": "none" }}>
+                                            <div className="form-group" style={{ "display": "block !important" }}>
+                                                <label htmlFor="cancelReason">Cancel Reason</label>
+                                                <textarea name="cancelReason" className="form-control" id="cancelReason" rows="2" maxLength="50"></textarea>
+                                            </div><br />
+                                        </div>
                                     </div>
-                                    <div className="form-check challengeOptions text-danger">
-                                        <input className="form-check-input" id="lost" value={!gameResult.won} type="radio" name="won" onChange={handleRadioInput} />
-                                        <label className="form-check-label" htmlFor="challenge-lost">
-                                            I Lost
-                                        </label>
-                                    </div>
-                                    {/* <div className="form-check challengeOptions text-warning">
-                                    <input className="form-check-input" id="challenge-cancel" type="radio" name="challengeResult" value="cancel" required="" />
-                                    <label className="form-check-label" for="challenge-cancel">
-                                        Cancel Game
-                                    </label>
-                                </div> */}
-                                    <div id="cancelReasonBlock" style={{ "display": "none" }}>
-                                        <div className="form-group" style={{ "display": "block !important" }}>
-                                            <label htmlFor="cancelReason">Cancel Reason</label>
-                                            <textarea name="cancelReason" className="form-control" id="cancelReason" rows="2" maxLength="50"></textarea>
-                                        </div><br />
-                                    </div>
-                                </div>
-                                <br />
-                                <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Post Result" onClick={handleResult} className="btn btn-primary" >Upload</button></span>
-                            </form>
+                                    <br />
+                                    <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Post Result" onClick={editResult} className="btn btn-primary" >Upload</button></span>
+                                </form>
+                            }):null
+                            }
                         </div>
                     </div>
                 </div>
@@ -205,4 +184,4 @@ const WonLost = (props) => {
     )
 }
 
-export default WonLost
+export default EditWonLost

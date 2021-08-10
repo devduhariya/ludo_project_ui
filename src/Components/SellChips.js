@@ -16,26 +16,26 @@ const SellChips = () => {
     }
 
     var token = JSON.parse(localStorage.getItem('login'));
-    const handleSubmitbutton = async (e) => {
-        window.location.reload();
-        e.preventDefault();
-        console.log(state);
-        await fetch("https://ludo-project-backend.herokuapp.com/api/buyChips",
-            {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ` + token.token
-                },
+    // const handleSubmitbutton = async (e) => {
+    //     window.location.reload();
+    //     e.preventDefault();
+    //     console.log(state);
+    //     await fetch("https://ludo-project-backend.herokuapp.com/api/buyChips",
+    //         {
+    //             method: "POST",
+    //             headers: {
+    //                 "Authorization": `Bearer ` + token.token
+    //             },
 
-                body: JSON.stringify(state)
-            }).then(response => {
-                console.log(response)
-            }, setState({ ...state, chipsSaved: true }))
-            .catch(error => {
-                console.log(error)
-            })
+    //             body: JSON.stringify(state)
+    //         }).then(response => {
+    //             console.log(response)
+    //         }, setState({ ...state, chipsSaved: true }))
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
 
-    }
+    // }
 
     
     const config = {
@@ -53,11 +53,11 @@ const SellChips = () => {
             setState(res.data);
             console.log("res.data", res.data);
         },
-    
+        
         setTimeout(() => {
             alert("Sell Chips request sent to admin");
-        window.location.reload();
-        },500));
+        // window.location.reload();
+        },500))
 
     }
 
