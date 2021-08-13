@@ -58,7 +58,7 @@ const Play = (props) => {
         ).then(res => {
             setData(res.data);
             props.history.push({
-                pathname: '/PostResult',
+                pathname: '/WonLost',
                 state: {
                     id: id,
                     status:res.data.changeStatus.status,

@@ -6,9 +6,12 @@ const WonLost = (props) => {
         roomCode: null
     })
 
-
+    const [result, setResult] = useState([]);
     const [data, setData] = useState([]);
-    const [room, setRoom] = useState([])
+    const [room, setRoom] = useState([]);
+    const [id, setId] = useState('');
+    const [winner, setWinner] = useState([]);
+    const [resultId, setResultId] = useState('');
     const [gameResult, setGameResult] = useState(
         {
             won: true
@@ -35,22 +38,6 @@ const WonLost = (props) => {
         const value = str2bool(e.target.value);
         setGameResult({ won: value });
     }
-    // const handleResultChange = (e) => {
-    //     switch (e.target.value) {
-    //         case 'screenshots':
-    //     setGameResult((prevState) => ({
-    //         ...prevState,
-    //         screenshots: e.target.files[0]
-    //     }));
-    //       break;
-    //     default:
-    //        setGameResult((prevState) => ({
-    //         ...prevState,
-    //          [e.target.name]: e.target.value }
-    //        ))
-
-    //     }
-    // }
 
 
 
@@ -88,40 +75,64 @@ const WonLost = (props) => {
 
 
 
-    // const handelResult = (e) => {
-    //     e.preventDefault()
-    //     const formData = new FormData();
-    //     formData.append('screenshots', gameResult.screenshots);
-    //     formData.append('won', gameResult.won);
-    //     Axios.post(`https://ludo-project-backend.herokuapp.com/upload/` + props.location.state.id,
-    //         formData,
-    //         config
-    //     ).then(res => {
-    //         setGameResult(res)
-    //         console.log("Game Result", res)
-
-    //     })
-    // }
-
+    const getResult = () => {
+        Axios.get(`https://ludo-project-backend.herokuapp.com/api/results/` + props.location.state.id,
+            config
+        ).then(res => {
+            setResult(res.data);
+            setId(res.data[0]._id);
+            console.log("result", res.data[0]._id);
+        }).catch(error => {
+            console.log('Error: ', error);
+        });
+    }
     const handleResult = (e) => {
         e.preventDefault()
         Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
             gameResult,
             config
         ).then(res => {
-             setGameResult(res.data);
-             window.alert("Result submitted Successfully");
-            console.log("Game Result", res.data)
+            setGameResult(res.data);
+            console.log("Challenge Id", res.data.ChallengeId)
+            window.alert("Result submitted Successfully");
 
         })
+        setTimeout(() => {
+
+        }, 0);
+        getResult();
+
     }
+
+
+
+
+
+    const editResult = async (e) => {
+        e.preventDefault()
+        await Axios.put(`https://ludo-project-backend.herokuapp.com/api/result/${id}`,
+            gameResult,
+            config
+        ).then(res => {
+            setGameResult(res.data);
+            console.log("Result Id", resultId);
+            window.alert("Result submitted Successfully");
+        }
+        );
+    }
+    
+
+
+
 
     useEffect(() => {
         getChallenge()
+        getResult()
     }, [])
+
+
     return (
         <div>
-
             <div className="row no-gutters justify-content-center">
                 <div className="col-sm-9 col-md-8 col-lg-6">
                     <br />
@@ -192,7 +203,12 @@ const WonLost = (props) => {
                                     </div>
                                 </div>
                                 <br />
-                                <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Post Result" onClick={handleResult} className="btn btn-primary" >Upload</button></span>
+                                {(userPhoneNumber == phone) ?
+                                    <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Post Result" onClick={handleResult} className="btn btn-primary" >Upload</button></span>
+                                    :
+                                    <span className="waves-input-wrapper waves-effect waves-light"><button type="submit" value="Edit Result" onClick={editResult} className="btn btn-primary" >Upload Result</button></span>
+
+                                }
                             </form>
                         </div>
                     </div>
