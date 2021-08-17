@@ -13,7 +13,7 @@ const Play = (props) => {
             [e.target.id]: e.target.value
         }));
     }
-
+    let result =  null
     var token = JSON.parse(localStorage.getItem('login'));
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,9 +25,20 @@ const Play = (props) => {
             ).then(
                 res => {
                     setState(res.data);
-                    window.alert('Challenge set successfully');
-                    window.location.reload();
-                })
+                    result = res.data
+
+                    console.log("res.data", result.message);
+                    (result.message && result.message ? window.alert("you don't have sufficient chips") : (setTimeout(() => {
+                        alert("Challenge set succusfully");
+                        window.location.reload();
+                    }, 500)))
+                },
+
+                // setTimeout(() => {
+                //     alert("Sell Chips request sent to admin");
+                //     window.location.reload();
+                // }, 500)
+            )
     }
 
 
@@ -51,7 +62,7 @@ const Play = (props) => {
             id: id,
             amount: amount
         })
-// const phone = null
+        // const phone = null
         console.log("idd", id);
         Axios.put(`https://ludo-project-backend.herokuapp.com/api/setChallenge/` + id, state,
             config
@@ -61,8 +72,8 @@ const Play = (props) => {
                 pathname: '/WonLost',
                 state: {
                     id: id,
-                    status:res.data.changeStatus.status,
-                    phone:res.data.paytm_no
+                    status: res.data.changeStatus.status,
+                    phone: res.data.paytm_no
                 }
             });
             //window.location.reload()
@@ -70,15 +81,15 @@ const Play = (props) => {
         })
     }
 
-    const viewSetChallenge = (id,phone) =>{
+    const viewSetChallenge = (id, phone) => {
         props.history.push({
             pathname: '/WonLost',
             state: {
-               id : id,
-               phone:phone
+                id: id,
+                phone: phone
             }
         });
-        console.log("phone play",phone)
+        console.log("phone play", phone)
     }
 
 

@@ -37,27 +37,34 @@ const SellChips = () => {
 
     // }
 
-    
+
     const config = {
         headers: { 'Authorization': `Bearer ${token.token}` }
     };
 
-
-    const handleSubmit = async(e) => {
+    let result = null
+    const handleSubmit = async (e) => {
         e.preventDefault();
         Axios.post(
             'https://ludo-project-backend.herokuapp.com/api/sellChips',
             state,
             config
-        ).then(res=>{
+        ).then(res => {
             setState(res.data);
-            console.log("res.data", res.data);
-        },
-        
-        setTimeout(() => {
+            result = res.data
+
+            console.log("res.data", result.message);
+           ( result.message && result.message ? window.alert("you don't have sufficient chips"):(setTimeout(() => {
             alert("Sell Chips request sent to admin");
-        // window.location.reload();
-        },500))
+            window.location.reload();
+        }, 500)))
+        },
+
+            // setTimeout(() => {
+            //     alert("Sell Chips request sent to admin");
+            //     window.location.reload();
+            // }, 500)
+            )
 
     }
 
@@ -131,7 +138,7 @@ export default SellChips
 //         }));
 //     }
 
-   
+
 
 //     var token = JSON.parse(localStorage.getItem('login'));
 //     const config = {
@@ -163,7 +170,7 @@ export default SellChips
 //                             <p className="text-info blink" >Only <span className="text-dark"><b>2 request</b></span> allowed per day.</p>
 //                             <p className="text-info blink" >एक दिन में सिर्फ <span className="text-dark"><b>2 रिकवेस्ट</b></span> ही ली जाएगी |</p>
 //                         </div><br />
-                       
+
 //                     </div><br />
 //                     <div className="form-group">
 //                         <form onSubmit={handleSubmit} method="post">
