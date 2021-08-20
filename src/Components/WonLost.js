@@ -120,6 +120,7 @@ const WonLost = (props) => {
             setGameResult(res.data);
             console.log("Result Id", resultId);
             window.alert("Result submitted Successfully");
+            history.push("/Play")
         }
         );
     }
