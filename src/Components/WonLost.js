@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 
 const WonLost = (props) => {
     const [state, setState] = useState({
@@ -18,7 +20,7 @@ const WonLost = (props) => {
         }
     )
 
-
+    
     const handleChange = (e) => {
         setState((prevState) => ({
             ...prevState,
@@ -86,6 +88,7 @@ const WonLost = (props) => {
             console.log('Error: ', error);
         });
     }
+    const history=useHistory();
     const handleResult = (e) => {
         e.preventDefault()
         Axios.post(`https://ludo-project-backend.herokuapp.com/api/result/` + props.location.state.id,
@@ -95,7 +98,7 @@ const WonLost = (props) => {
             setGameResult(res.data);
             console.log("Challenge Id", res.data.ChallengeId)
             window.alert("Result submitted Successfully");
-
+            history.push("/Play")
         })
         setTimeout(() => {
 
